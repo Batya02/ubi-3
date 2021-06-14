@@ -49,7 +49,7 @@ async def my_profile_eng(message: Message):
                     [InlineKeyboardButton(text="Top up balance", callback_data="top_up_balance")], 
                     [InlineKeyboardButton(text="Change language", callback_data="change_language")], 
                     [InlineKeyboardButton(text="Information about the last attack", callback_data="info_about_the_last_attack")],
-                    [InlineKeyboardButton(text="Get activation history", callback_data="get_history_activation")]
+                    [InlineKeyboardButton(text="Get activation history", callback_data="get_history_activations")]
             ]
     )
 

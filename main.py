@@ -26,7 +26,8 @@ async def main():
                 "host_site_api":"", 
                 "host_site_main":"", 
 
-                "qiwi_private_key":""
+                "qiwi_private_key":"", 
+                "qiwi_phone":""
                 }, indent=4)
             )
             add_cfg.close()
