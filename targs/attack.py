@@ -1,7 +1,6 @@
 from json import loads
 from aiohttp import ClientSession
 from asyncio import sleep
-from asyncio.exceptions import TimeoutError
 
 from objects import globals
 
