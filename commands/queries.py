@@ -11,6 +11,7 @@ from db_models.UserData import UserData
 from temp.select_lang import select_lang
 from temp.lang_keyboards import lang_keyboard
 
+from formats import dateTime
 
 @dp.callback_query_handler(lambda query: query.data.startswith(("language")))
 async def select_language(query: CallbackQuery):
@@ -67,5 +68,5 @@ async def get_info_about_the_last_attack(query: CallbackQuery):
         message_id=query.message.message_id, 
         text=f"Статус: {user_data.status}\n"
         f"Номер телефона: {user_data.last_phone}\n"
-        f"Дата и время: {user_data.last_date}"
+        f"Дата и время: {dateTime.datetime_format(user_data.last_date)}"
     )
