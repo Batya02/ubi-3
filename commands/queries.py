@@ -4,7 +4,7 @@ from aiogram.types import (
         Message
         )
 
-from objects.globals import dp, bot
+from objects.globals import dp, bot, config
 from objects import globals
 
 from db_models.User import User
@@ -23,8 +23,8 @@ from qiwipyapi import Wallet
 
 from asyncio import sleep
 from io import BytesIO
-
 import pandas as pd
+from aiohttp import ClientSession
 
 WALLET = Wallet(globals.config["qiwi_phone"], p2p_sec_key=globals.config["qiwi_private_key"])
 
@@ -159,3 +159,79 @@ async def get_history_activation(query: CallbackQuery):
         query.message.chat.id, 
         document=("activation.xlsx",to_write.getvalue())
     )
+
+@dp.callback_query_handler(lambda query: query.data.startswith(("num")))
+async def pay_number(query: CallbackQuery):
+    metadata_service = query.data.split("_")
+    del metadata_service[0]
+    
+    service, price = metadata_service
+    
+    balance = await User.objects.get(user_id=query.from_user.id)
+    host_site_api = config["host_site_api"] 
+    api_key = config["api_key"]
+    
+    if int(balance.balance) < int(price):
+        return await bot.edit_message_text(
+            chat_id=query.from_user.id, 
+            message_id=query.message.message_id, 
+            text="У вас недостаточно средств!"
+        )
+    
+    async with ClientSession() as client_session:
+        async with client_session.get(f"http://{host_site_api}/stubs/handler_api.php?api_key={cfg.api_key}&action=getNumber&service={service}&operator=any&country=russia") as resp:
+            phone = await resp.text()
+
+    if phone == "NO_NUMBERS":
+        return query.answer("Номера отсутствуют!")
+    
+    elif phone == "NO_BALANCE":
+        await bot.send_message(
+            config["chat_id"], 
+            text=f"Нужно пополнить счет! https://{cfg.host_site_main}"
+            )
+
+        await query.answer(text="Неизвестная ошибка!")
+    
+    else:
+
+        status_phone, id_phone, self_phone = phone.split(":")
+
+        cancel_phone = InlineKeyboardMarkup(
+            inline_keyboard = [
+                [InlineKeyboardButton(text="Отменить", callback_data=f"cancel-num_{id_phone}")]
+            ]
+        )
+
+        await bot.edit_message_text(
+                chat_id = query.message.chat.id, 
+                message_id = query.message.message_id, 
+                text=f"Status: <b>{status_phone}</b>\n"
+                f"ID: <code>{id_phone}</code>\n"
+                f"Number: <code>{self_phone}</code>", 
+                reply_markup=cancel_phone
+                )
+        
+        while True:
+            #GET ID ORDER
+            async with client_session.get(f"http://{host_site_api}/stubs/handler_api.php?api_key={api_key}&action=getStatus&id={id_phone}") as get_id:
+                get_id = await get_id.text()
+
+            if get_id == "STATUS_WAIT_CODE":pass
+            elif get_id.startswith(("STATUS_OK")):
+                #UPDATE BALANCE
+                new_balance = float(balance.balance) - float(price) 
+                await balance.update(balance=new_balance)
+
+                #CREATE NEW ORDER
+                await FAO.objects.create(
+                        user_id=query.from_user.id, 
+                        service=service, 
+                        price=price
+                )
+
+                code = get_id.split(":")[1]
+                return await bot.send_message(
+                    query.message.chat.id, 
+                    text=f"Code: <code>{code}</code>"
+                )
