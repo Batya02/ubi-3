@@ -179,7 +179,7 @@ async def pay_number(query: CallbackQuery):
         )
     
     async with ClientSession() as client_session:
-        async with client_session.get(f"http://{host_site_api}/stubs/handler_api.php?api_key={cfg.api_key}&action=getNumber&service={service}&operator=any&country=russia") as resp:
+        async with client_session.get(f"http://{host_site_api}/stubs/handler_api.php?api_key={api_key}&action=getNumber&service={service}&operator=any&country=russia") as resp:
             phone = await resp.text()
 
     if phone == "NO_NUMBERS":
