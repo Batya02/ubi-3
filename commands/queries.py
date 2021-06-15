@@ -187,9 +187,10 @@ async def pay_number(query: CallbackQuery):
         return await query.answer("Номера отсутствуют!")
     
     elif phone == "NO_BALANCE":
+        host_site_main = config["host_site_main"]
         await bot.send_message(
             config["chat_id"], 
-            text=f"Нужно пополнить счет! https://{cfg.host_site_main}"
+            text=f"Нужно пополнить счет! https://{host_site_main}"
             )
 
         await query.answer(text="Неизвестная ошибка!")
