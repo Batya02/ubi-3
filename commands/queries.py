@@ -181,9 +181,10 @@ async def pay_number(query: CallbackQuery):
     async with ClientSession() as client_session:
         async with client_session.get(f"http://{host_site_api}/stubs/handler_api.php?api_key={api_key}&action=getNumber&service={service}&operator=any&country=russia") as resp:
             phone = await resp.text()
+            await client_session.close()
 
     if phone == "NO_NUMBERS":
-        return query.answer("Номера отсутствуют!")
+        return await query.answer("Номера отсутствуют!")
     
     elif phone == "NO_BALANCE":
         await bot.send_message(
@@ -214,8 +215,9 @@ async def pay_number(query: CallbackQuery):
         
         while True:
             #GET ID ORDER
-            async with client_session.get(f"http://{host_site_api}/stubs/handler_api.php?api_key={api_key}&action=getStatus&id={id_phone}") as get_id:
-                get_id = await get_id.text()
+            async with ClientSession() as client_session:
+                async with client_session.get(f"http://{host_site_api}/stubs/handler_api.php?api_key={api_key}&action=getStatus&id={id_phone}") as get_id:
+                    get_id = await get_id.text()
 
             if get_id == "STATUS_WAIT_CODE":pass
             elif get_id.startswith(("STATUS_OK")):
@@ -235,3 +237,20 @@ async def pay_number(query: CallbackQuery):
                     query.message.chat.id, 
                     text=f"Code: <code>{code}</code>"
                 )
+
+@dp.callback_query_handler(lambda query: query.data.startswith(("cancel-num")))
+async def cancel_number(query: CallbackQuery):
+    cancel_id_number = query.data.replace("_", " ").split()[1]
+
+    host_site_api = config["host_site_api"] 
+    api_key = config["api_key"]
+
+    async with ClientSession() as session:
+
+        #CANCEL ORDER
+        async with session.post(f"http://{host_site_api}/stubs/handler_api.php?api_key={api_key}&action=setStatus&status=-1&id={cancel_id_number}") as resp:
+            resp = await resp.text()
+
+        if resp == "ACCESS_CANCEL":
+            await query.answer(text="Номер успешно отменен.")
+            await bot.delete_message(query.message.chat.id, query.message.message_id)
