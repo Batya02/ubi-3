@@ -26,6 +26,9 @@ from io import BytesIO
 import pandas as pd
 from aiohttp import ClientSession
 
+from datetime import datetime as dt 
+from datetime import timedelta
+
 WALLET = Wallet(globals.config["qiwi_phone"], p2p_sec_key=globals.config["qiwi_private_key"])
 
 class States(StatesGroup):
@@ -105,7 +108,7 @@ async def get_amount_balance(message: Message, state:FSMContext):
 
     try:
         amount = float(message.text)
-        invoice = WALLET.create_invoice(value=amount)
+        invoice = WALLET.create_invoice(value=amount, expirationDateTime=dateTime.datetime_format(dt.now()+timedelta(hours=6)))
 
         payment_url = InlineKeyboardMarkup(
             inline_keyboard=[
