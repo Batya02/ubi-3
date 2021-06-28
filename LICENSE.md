@@ -1,4 +1,4 @@
-Copyright © 2019, [Encode OSS Ltd](https://www.encode.io/).
+Copyright © 2020, [UBI].
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
