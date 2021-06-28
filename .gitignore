@@ -7,3 +7,4 @@ debug/
 pyvenv.cfg
 config.json
 db/
+Scripts/
