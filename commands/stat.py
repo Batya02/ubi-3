@@ -13,7 +13,7 @@ async def stat(message: Message):
         prioritety_status = await UserData.objects.filter(status="∞").all()
         
         return await message.answer(
-                text=f"Статистика:"
+                text=f"📊Статистика:\n"
                 f"⚔️Общее количество: {len(all_users)}\n"
                 f"💣Активировали бомбер: {len(activate_bomber)}\n"
                 f"💎С приоритетным статусом: {len(prioritety_status)}"
