@@ -13,8 +13,8 @@ class User(Model):
 
     id = Integer(primary_key=True)
 
-    user_id = Integer()
+    user_id  = Integer()
     username = String(max_length=255)
-    created = DateTime(default=dt.now())
+    created  = DateTime(default=dt.now())
     language = String(max_length=4)
-    balance = Float()
+    balance  = Float()

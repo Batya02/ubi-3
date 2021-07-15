@@ -10,5 +10,8 @@ db:Database = None
 metadata:MetaData = None
 db_engine = None
 
-first_count = 0
-last_count = 15
+in_users:bool = False
+users:list = []
+count_users:int = 0
+
+admin_password:str = ""

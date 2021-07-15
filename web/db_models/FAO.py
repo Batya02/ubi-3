@@ -10,8 +10,8 @@ class FAO(Model):
     __database__ = db
     __metadata__ = metadata
 
-    id = Integer(primary_key=True)
+    id      = Integer(primary_key=True)
     user_id = Integer()
     created = DateTime(default=dt.now())
     service = String(max_length=50)
-    price = String(max_length=20)
+    price   = String(max_length=20)
