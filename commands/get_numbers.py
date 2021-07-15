@@ -33,4 +33,3 @@ async def get_numbers(message:Message):
             text="🇷🇺Выберите сервис👇", 
             reply_markup=prices_markup
         )
-

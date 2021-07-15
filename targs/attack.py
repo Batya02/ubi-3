@@ -114,4 +114,3 @@ class Attack:
                 )
         self.process_status = False         #Change process status 
         await self.client_session.close()   #Stop process attack
-        

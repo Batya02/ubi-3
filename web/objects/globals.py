@@ -12,5 +12,3 @@ db_engine = None
 
 first_count = 0
 last_count = 15
-
-

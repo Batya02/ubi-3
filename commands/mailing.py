@@ -10,16 +10,24 @@ from db_models.User import User
 from asyncio import sleep
 from datetime import datetime as dt
 
+from temp.lang_keyboards import lang_keyboard
+
 @dp.message_handler(commands="mail")
 async def mailing(message: Message):
     await message.answer(
-        text="Введите текст для рассылки:"
+        text="Отмена рассылки -> /start\nВведите текст для рассылки:"
     )
 
     await Mailing.mailing_text_targ.set()
 
-@dp.message_handler(state=Mailing.mailing_text_targ)
+@dp.message_handler(
+        lambda message: message.text not in [k[0] for k in lang_keyboard["RU"]], 
+        state=Mailing.mailing_text_targ)
 async def get_mailing_text(message: Message, state:FSMContext):
+    if message.text == "/start":
+        await state.finish()
+        return await message.answer("Рассылка отменена!")
+
     users = await User.objects.all()
     
     start_time = dt.now()
