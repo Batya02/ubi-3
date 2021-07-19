@@ -22,4 +22,7 @@ async def users():
         globals.users = await User.objects.all()
         globals.count_users = len(globals.users)
 
-    return render_template("users.html", users=globals.users, ip_adress=ip_adress, count_users=globals.count_users)
+    return render_template(
+        "users.html",        users=globals.users, 
+        ip_adress=ip_adress, count_users=globals.count_users
+        )
