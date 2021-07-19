@@ -4,6 +4,8 @@ from aiogram.types import Message
 
 @dp.message_handler(commands="help")
 async def help(message:Message):
+
+    # Load help text (.txt)
     with open(r"temp/help.txt", "r", encoding="utf-8") as load_help_text:
         help_text = load_help_text.read()
 
