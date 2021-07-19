@@ -87,9 +87,12 @@ async def get_info_about_the_last_attack(query: CallbackQuery):
     return await bot.edit_message_text(
         chat_id=query.from_user.id, 
         message_id=query.message.message_id, 
-        text=f"Статус: {user_data.status}\n"
-        f"Номер телефона: {user_data.last_phone}\n"
-        f"Дата и время: {dateTime.datetime_format(user_data.last_date)}"
+        text=f"📄Информация о последней атаке ➜\n\n"
+        f"💎Статус: {user_data.status} кругов\n"
+        f"〰️\n"
+        f"☎️Номер телефона: {user_data.last_phone}\n"
+        f"〰️\n"
+        f"📅Дата и время: {dateTime.datetime_format(user_data.last_date)}"
     )
 
 @dp.callback_query_handler(lambda query: query.data == "top_up_balance")
