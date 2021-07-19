@@ -24,15 +24,16 @@ async def mailing(message: Message):
         lambda message: message.text not in [k[0] for k in lang_keyboard["RU"]], 
         state=Mailing.mailing_text_targ)
 async def get_mailing_text(message: Message, state:FSMContext):
+
     if message.text == "/start":
         await state.finish()
         return await message.answer("Рассылка отменена!")
 
-    users = await User.objects.all()
+    users = await User.objects.all() # Get all users
     
-    start_time = dt.now()
+    start_time = dt.now() # Start time
 
-    blocked:int = 0
+    blocked:int = 0 # Blocked counter
 
     for i, user in enumerate(users):
         if i % 5 == 0:
@@ -45,15 +46,16 @@ async def get_mailing_text(message: Message, state:FSMContext):
         except (BotBlocked, UserDeactivated, ChatNotFound):
             blocked += 1
     
+    #Write count users which blocked the bot
     with open(r"temp/blocked_users.txt", "w") as add_blocked_count_users:
         add_blocked_count_users.write(str(blocked))
         add_blocked_count_users.close()
 
-    end_time = int((dt.now() - start_time).total_seconds())
+    end_time = int((dt.now() - start_time).total_seconds()) # End time
     
     await message.answer(
-        text=f"Рассылка заврешена!\n"
-        f"Минут: {end_time // 60} Секунд: {end_time % 60}"
+        text=f"📌Рассылка заврешена!\n"
+        f"⏱Минут: {end_time // 60} Секунд: {end_time % 60}"
     )
 
     await state.finish()
