@@ -5,3 +5,6 @@ class Mailing(StatesGroup):
 
 class SendMessage(StatesGroup):
     send_message_targ = State()
+
+class Phone(StatesGroup):
+    get_phone_targ = State()
