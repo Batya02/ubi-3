@@ -1,7 +1,7 @@
 from json import loads, dumps
 from aiohttp import ClientSession
+
 from asyncio import sleep
-from random import choice
 
 from objects import globals
 
@@ -9,7 +9,6 @@ from aiohttp.client_exceptions import (
         ClientConnectionError, ClientOSError, 
         ClientResponseError
         )
-from asyncio.exceptions import TimeoutError
 
 from aiogram.types import Message
 from datetime import datetime as dt
@@ -95,6 +94,7 @@ class Attack:
                                 ClientOSError, RuntimeError, 
                                 TypeError,     ClientResponseError
                                 ):pass
+                        except:pass
                     
                     elif "json" in v.keys():
 
@@ -110,6 +110,7 @@ class Attack:
                                 ClientOSError, RuntimeError, 
                                 TypeError,     ClientResponseError
                                 ):pass
+                        except:pass
 
                     else:
                         try:
@@ -121,6 +122,7 @@ class Attack:
                                 ClientOSError, RuntimeError, 
                                 TypeError,     ClientResponseError
                                 ):pass
+                        except:pass
         
             await sleep(3) #Time-out
             if circles_status == "∞":pass
