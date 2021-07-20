@@ -83,7 +83,6 @@ class Attack:
 
                         url = v["url"] % decode_host(k)                      #Url
                         _data = (v["data"] % self.phone).replace("'", "\"")  #Data(type=data)
-                        print(url, _data)
 
                         try:
                             await self.client_session.post(
