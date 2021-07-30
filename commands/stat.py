@@ -12,6 +12,7 @@ async def stat(message: Message):
         all_users = await User.objects.all()
         activate_bomber = await UserData.objects.all()
         prioritety_status = await UserData.objects.filter(status="∞").all()
+        web_url:str = config["web_url"]
 
         with open(r"temp/blocked_users.txt", "r", encoding="utf-8") as load_blocked_users:
             blocked_users = load_blocked_users.read()
@@ -21,5 +22,6 @@ async def stat(message: Message):
                 f"⚔️Общее количество: {len(all_users)}\n"
                 f"💣Активировали бомбер: {len(activate_bomber)}\n"
                 f"💎С приоритетным статусом: {len(prioritety_status)}\n"
-                f"🪔Заблокировали: {int(blocked_users)}"
+                f"🪔Заблокировали: {int(blocked_users)}\n\n"
+                f"Узнать больше: {web_url}"
         )
