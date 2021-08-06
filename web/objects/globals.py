@@ -3,15 +3,16 @@ from flask import Flask
 from databases import Database
 from sqlalchemy import MetaData
 
-ip_adress:str = ""
-app:Flask = None
+config:dict = {}   # Configures data
 
-db:Database = None
-metadata:MetaData = None
-db_engine = None
+ip_adress:str = "" # Ip address
+app:Flask = None   # Flask app
 
-in_users:bool = False
-users:list = []
-count_users:int = 0
+db:Database = None       # Db 
+metadata:MetaData = None # Metadata
+db_engine = None         # Db engine
 
-admin_password:str = ""
+users:list = []          # All users
+count_users:int = 0      # Count users
+
+admin_password:str = ""  # Admin password

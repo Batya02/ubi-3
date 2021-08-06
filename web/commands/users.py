@@ -2,6 +2,8 @@ from objects import globals
 from objects.globals import app, ip_adress, admin_password
 from flask import render_template, request
 
+from requests import get
+
 from db_models.User import User
 
 @app.route("/users", methods=["GET", "POST"])
@@ -11,13 +13,7 @@ async def users():
         return '<a href="/login">Go to login</a>'
     
     if bool(request.form.get("sort-users")):
-        if not globals.in_users:
-            globals.in_users = True
-            globals.users = await User.objects.all()
-            globals.count_users = len(globals.users)
-        else:
-            globals.in_users = False
-            globals.users = reversed(globals.users)
+        globals.users = list(reversed(globals.users))
     else:
         globals.users = await User.objects.all()
         globals.count_users = len(globals.users)
