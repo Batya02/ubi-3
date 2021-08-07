@@ -157,18 +157,24 @@ async def top_up_balance(query: CallbackQuery):
     :rtype: Message
 
     """
+    main_user_data = await User.objects.get(user_id=query.from_user.id)
+
+    if main_user_data.language == "RU":
+        top_up_text = "Введите сумму для пополения:"
+    else:
+        top_up_text = "Enter the amount to top up:"
 
     await bot.edit_message_text(
         chat_id = query.from_user.id, 
         message_id=query.message.message_id, 
-        text="Введите сумму для пополения:"
+        text=top_up_text
     )
 
     await States.get_amount_balance_targ.set()
 
 @dp.message_handler(state=States.get_amount_balance_targ)
 async def get_amount_balance(message: Message, state:FSMContext):
-    """ Get the amount to top up ()
+    """ Get the amount to top up
 
     :param: message
     :type: Message
@@ -183,16 +189,29 @@ async def get_amount_balance(message: Message, state:FSMContext):
 
     try:
         amount = float(message.text)
-        invoice = WALLET.create_invoice(value=amount, expirationDateTime=dateTime.datetime_format(dt.now()+timedelta(hours=6)))
+        invoice = WALLET.create_invoice(value=amount, expirationDateTime=dateTime.datetime_format(dt.now()+timedelta(hours=3)))
+
+        main_user_data = await User.objects.get(user_id=message.from_user.id)
+        
+        if main_user_data.language == "RU":
+            payment_text_button = "Продолжить оплату"
+            payment_text_message = "Продолжить оплату?"
+            successfull_payment = "Ваш баланс успешно пополнен на %.2f₽"
+            correct_input_msg = "Правильный формат ввода суммы - 10 или 10.0"
+        else:
+            payment_text_button = "Continue"
+            payment_text_message = "Continue?"
+            successfull_payment = "Your balance has been successfully credited to %.2f₽"
+            correct_input_msg = "The correct format for entering the amount - 10 or 10.0"
 
         payment_url = InlineKeyboardMarkup(
             inline_keyboard=[
-                [InlineKeyboardButton(text="Продолжить оплату", url=invoice["payUrl"])]
+                [InlineKeyboardButton(text=payment_text_button, url=invoice["payUrl"])]
             ]
         )
 
         await message.answer(
-            text="Продолжить оплату?", 
+            text=payment_text_message, 
             reply_markup=payment_url
         )
 
@@ -203,12 +222,12 @@ async def get_amount_balance(message: Message, state:FSMContext):
                 update_balance = await User.objects.get(user_id=message.from_user.id)
                 new_value_to_balance = float(update_balance.balance) + amount
                 await update_balance.update(balance=new_value_to_balance)
-                return await message.answer(f"Ваш баланс успешно пополнен на {amount}₽")
+                return await message.answer(successfull_payment % amount)
             await sleep(5)
 
     except ValueError:
         return await message.answer(
-            text="Правильный формат ввода суммы - 10 или 10.0"
+            text=correct_input_msg
         ) 
 
 @dp.callback_query_handler(lambda query: query.data == "get_history_activations")
