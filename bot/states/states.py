@@ -1,5 +1,8 @@
 from aiogram.dispatcher.filters.state import StatesGroup, State
 
+class States(StatesGroup):
+    get_amount_balance_targ = State()
+    
 class Mailing(StatesGroup):
     mailing_text_targ = State()
 

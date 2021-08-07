@@ -1,653 +1,542 @@
-{  
+{
         "bZ>Aid2e-WVJ>oYEpT#gXL4a}ZDn!": {
-                "url":"https://%s/web-api/auth/request_code", 
-                "data":"{'phone':'%s'}", 
-                "formating":false
-                }, 
-
+                "url": "https://%s/web-api/auth/request_code",
+                "data": "{'phone':'%s'}",
+                "formating": false
+        },
         "bZ>AiV{C7AWG-!CX>2ZXbuDmmZ)b90ZEa<8": {
-                "url":"https://%s/api/v2/notify/applink", 
-                "json":"{'api':2, 'email':'email', 'x-email':'x-email', 'phone':'+%s'}", 
-                "formating":false
-                }, 
-
+                "url": "https://%s/api/v2/notify/applink",
+                "json": "{'api':2, 'email':'email', 'x-email':'x-email', 'phone':'+%s'}",
+                "formating": false
+        },
         "bZ>AiY-MhAVJ>5DZ7pzeZ)b90ZEa<8": {
-                "url":"https://%s/api/v1/authentication/", 
-                "json":"{'phone':'%s'}", 
-                "formating":false
-                }, 
-
+                "url": "https://%s/api/v1/authentication/",
+                "json": "{'phone':'%s'}",
+                "formating": false
+        },
         "bZ>AiZEs>}Y-KHBaA_`aX?JNZV{dIOaB^>Fa$#+4WpV": {
-                "url":"https://%s/oauth/authorize", 
-                "data":"{'username':'%s', 'response_type':'urn:qiwi:oauth:response-type:confirmation-id', 'client_id':'android-qw', 'client_secret':'zAm4FKq9UnSe7id'}",  
-                "formating":false
-                }, 
-
+                "url": "https://%s/oauth/authorize",
+                "data": "{'username':'%s', 'response_type':'urn:qiwi:oauth:response-type:confirmation-id', 'client_id':'android-qw', 'client_secret':'zAm4FKq9UnSe7id'}",
+                "formating": false
+        },
         "bZ>AiVQ^_Kb9HWPX=iA3E^cLXEpT#gXL4a}ZDn!": {
-                "url":"https://%s/v3/customers/authorization/", 
-                "data":"{'phone':'%s'}", 
-                "formating":false
-                }, 
-    
+                "url": "https://%s/v3/customers/authorization/",
+                "data": "{'phone':'%s'}",
+                "formating": false
+        },
         "bZ>AicXxL#V`+40Y-w(5E^>7(aB^>Fa$#+4WpV": {
-                "url":"https://%s/registration/confirm/phone/+%s/", 
-                "formating":true
-                }, 
-
+                "url": "https://%s/registration/confirm/phone/+%s/",
+                "formating": true
+        },
         "bZ>AiVQ_FQVQ^_KYi46Ea&;|ma&KpHVQp<?as": {
-                "url":"https://%s/api/v1/common/auth/send-validation-sms", 
-                "json":"{'phone':'+%s'}",
-                "formating":false
-                }, 
-    
+                "url": "https://%s/api/v1/common/auth/send-validation-sms",
+                "json": "{'phone':'+%s'}",
+                "formating": false
+        },
         "bZ>AiVQ^_KbZKsDZ)RpLa&;|ma&KpHVQp<?as": {
-                "url":"https://%s/v1/sign_up", 
-                "data":"{'phone':'+%s'}", 
-                "formating":false
-                }, 
-    
+                "url": "https://%s/v1/sign_up",
+                "data": "{'phone':'+%s'}",
+                "formating": false
+        },
         "bZ>AiaB^>CE_8NiE^TykE^>7(aB^>Fa$#+4WpV": {
-                "url":"https://%s/tvh-public-api-gateway/public/rest/general/send-code?msisdn=%s", 
-                "format":true
-                }, 
-    
+                "url": "https://%s/tvh-public-api-gateway/public/rest/general/send-code?msisdn=%s",
+                "format": true
+        },
         "bZ>AiVQ^_KWMyn=bZKp6E^>7(aB^>Fa$#+4WpV": {
-                "url":"https://%s/api/v2/signup", 
-                "data":"{'SignupForm[username]':'%s', 'SignupForm[device_type]':3}",
-                "formating":false
-                }, 
-
+                "url": "https://%s/api/v2/signup",
+                "data": "{'SignupForm[username]':'%s', 'SignupForm[device_type]':3}",
+                "formating": false
+        },
         "bZ>AicXxL#X=8CNV{dIOaB^>Fa$#+4WpV": {
-                "url":"https://%s/smsreg/requestPhoneValidation.php", 
-                "data":"{'msisdn':'%s', 'locale':'en', 'countryCode':'ru', 'version':'1', 'k':'ic1rtwz1s1Hj1O0r', 'r':'46763'}", 
-                "formating":false
-                }, 
-    
+                "url": "https://%s/smsreg/requestPhoneValidation.php",
+                "data": "{'msisdn':'%s', 'locale':'en', 'countryCode':'ru', 'version':'1', 'k':'ic1rtwz1s1Hj1O0r', 'r':'46763'}",
+                "formating": false
+        },
         "bZ>AiZ)+}cbuDmmZ)b90ZEa<8": {
-                "url":"https://%s/dk?cmd=AnonymRegistrationEnterPhone&st.cmd=anonymRegistrationEnterPhone", 
-                "data":"{'st.r.phone':'+%s'}", 
-                "formating":false
-                }, 
-    
+                "url": "https://%s/dk?cmd=AnonymRegistrationEnterPhone&st.cmd=anonymRegistrationEnterPhone",
+                "data": "{'st.r.phone':'+%s'}",
+                "formating": false
+        },
         "bZ>AiaA9+EaBp&SE_8QkbYo~PbapLpa&KpHVQp<?as": {
-                "url":"https://%s/register?", 
-                "json":"{'phone_number':'%s', 'birthday':{'day': 11, 'month':11, 'year':1999}, 'client_id':'kd1unb4b3q4t58fwlpcbzcbnm76a8fp', 'include_verification_code':true, 'password':'genius_maximus_07', 'username':'agsagahsha'}", 
-                "formating":false
-                }, 
-    
+                "url": "https://%s/register?",
+                "json": "{'phone_number':'%s', 'birthday':{'day': 11, 'month':11, 'year':1999}, 'client_id':'kd1unb4b3q4t58fwlpcbzcbnm76a8fp', 'include_verification_code':true, 'password':'genius_maximus_07', 'username':'agsagahsha'}",
+                "formating": false
+        },
         "bZ>AiWn^J4d0}p3Wq2)ca&KpHVQp<?as": {
-                "url":"https://%s/api/v1/user/request_authentication_code", 
-                "json":"{'phone_number':'+%s'}", 
-                "formating":false
-                }, 
-    
+                "url": "https://%s/api/v1/user/request_authentication_code",
+                "json": "{'phone_number':'+%s'}",
+                "formating": false
+        },
         "bZ>AiZFw$qWo%_<a$#*QZ*pfXaB^>Fa$#+4WpV": {
-                "url":"https://%s/auth/send_password", 
-                "data":"{'phone':'+%s'}", 
-                "formating":false
-                }, 
-    
+                "url": "https://%s/auth/send_password",
+                "data": "{'phone':'+%s'}",
+                "formating": false
+        },
         "bZ>AiZ7y_aYjkgGE@N+PEpT#gXL4a}ZDn!": {
-                "url":"https://%s/node/send/download_link", 
-                "json":"{'Mobile':'%s', 'PhoneRegin':'UA', 'language':'en', 'slideVerify':0, 'page':{'af_adset_id':0, 'pid':0}}",  
-                "formating":false
-                }, 
-    
+                "url": "https://%s/node/send/download_link",
+                "json": "{'Mobile':'%s', 'PhoneRegin':'UA', 'language':'en', 'slideVerify':0, 'page':{'af_adset_id':0, 'pid':0}}",
+                "formating": false
+        },
         "bZ>AiZ((q0E^=XMW@cq+b7gKWa&;|ma&KpHVQp<?as": {
-                "url":"https://%s/api/sms-auth/public/v1.0/phone/code?number=%s",
-                "formating":true
-                },
-
+                "url": "https://%s/api/sms-auth/public/v1.0/phone/code?number=%s",
+                "formating": true
+        },
         "bZ>AiW@&C@V{C73WiE1cEpT#gXL4a}ZDn!": {
-                "url":"https://%s/register?phone=+%s",
-                "formating":true
-                }, 
-    
+                "url": "https://%s/register?phone=+%s",
+                "formating": true
+        },
         "bZ>AiY;R|2ZZ2qVb#rNMXD(xJZ7pzeZ)b90ZEa<8": {
-                "url":"https://%s/api/v2/send-otp", 
-                "data":"{'phone':'%s'}",  
-                "formating":false
-                },
-    
+                "url": "https://%s/api/v2/send-otp",
+                "data": "{'phone':'%s'}",
+                "formating": false
+        },
         "bZ>AicXxL#baG{7Vs9>EZ*47ba&KpHVQp<?as": {
-                "url":"https://%s/api/v2/auth/login/otp/", 
-                "data":"{'phone_number':'%s'}", 
-                "formating":false
-                }, 
-    
+                "url": "https://%s/api/v2/auth/login/otp/",
+                "data": "{'phone_number':'%s'}",
+                "formating": false
+        },
         "bZ>AiYj1LIZeeg?c`jpbZ7pzeZ)b90ZEa<8": {
-                "url":"https://%s/transfers/online/api/users/otps", 
-                "data":"{'phone':'%s'}", 
-                "formating":false
-                }, 
-
+                "url": "https://%s/transfers/online/api/users/otps",
+                "data": "{'phone':'%s'}",
+                "formating": false
+        },
         "bZ>AicXxL#a$#a`bYU)XbuDmmZ)b90ZEa<8": {
-                "url":"https://%s/remind", 
-                "data":"{'credential':'%s'}", 
-                "formating":false
-                },
-
+                "url": "https://%s/remind",
+                "data": "{'credential':'%s'}",
+                "formating": false
+        },
         "bZ>AiaA|saVQ6)9E^>7(aB^>Fa$#+4WpV": {
                 "url": "https://%s/account/password-reset",
-                "data": "{'reset_by':'phone', 'action_id':'pass-recovery', 'phone':'%s', '_token':'*'}", 
-                "formating":false
-                },
-
+                "data": "{'reset_by':'phone', 'action_id':'pass-recovery', 'phone':'%s', '_token':'*'}",
+                "formating": false
+        },
         "bZ>Aia&>fdVr4FJbuDmmZ)b90ZEa<8": {
                 "url": "https://%s/api/accounts/sendpass/phone",
-                "data": "{'phone':'+%s'}",  
-                "formating":false
-                },
-
+                "data": "{'phone':'+%s'}",
+                "formating": false
+        },
         "bZ>AiGcYtTE@N+PE_GooaB^>Fa$#+4WpV": {
                 "url": "https://%s/taxi-ordering",
-                "data": "{'callback-phone':'+%s'}", 
-                "formating":false
-                },
-
+                "data": "{'callback-phone':'+%s'}",
+                "formating": false
+        },
         "bZ>AiVQgk$Y-wg?E@NXYaB^>Fa$#+4WpV": {
                 "url": "https://%s/auth.php",
-                "data": "{'phone':'+%s'}", 
-                "formating":false
-                },
-
+                "data": "{'phone':'+%s'}",
+                "formating": false
+        },
         "bZ>AicXxL#b8v5RbZudCbY*fbbzv=Va&KpHVQp<?as": {
-                "url": "https://%s/?module=users&action=SendSMSReg&phone=+%s", 
-                "formating":true
-                },
-
+                "url": "https://%s/?module=users&action=SendSMSReg&phone=+%s",
+                "formating": true
+        },
         "bZ>AicXxL#Z+UNWZ*OgLE@N+PEpT#gXL4a}ZDn!": {
                 "url": "https://%s/api/pwa/generateotp?phone=+%s&country_code=%2B7&nod=4&locale=en",
-                "formating":true
-                },
-
+                "formating": true
+        },
         "bZ>Aib7f<7a%C=WZft38WiEALEpT#gXL4a}ZDn!": {
                 "url": "https://%s/ajax/check_phone/?reg_phone=%s",
-                "formating":true
-                },
-
+                "formating": true
+        },
         "bZ>AiaA9q5X=^THZ*47ba&KpHVQp<?as": {
                 "url": "https://%s/callback",
                 "data": "{'phoneCallback':'%s'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AicXxL#VPtk`V`VOBZZ36UEpT#gXL4a}ZDn!": {
                 "url": "http://%s/vasha-zayavka-prinyata.html/",
-                "data": "{'fio':'Джек','tel':'%s','type':'2','capch':'4','mod':'1'}", 
-                "formating":false
-                },
-
+                "data": "{'fio':'Джек','tel':'%s','type':'2','capch':'4','mod':'1'}",
+                "formating": false
+        },
         "bZ>AiXm4y}d2e+tZe?^WaB^>Fa$#+4WpV": {
                 "url": "https://%s/api/callback",
                 "data": "{'name':'Патрик','phone':'%s'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiV`+4GGBhrAVJ&cSZ)b90ZEa<8": {
                 "url": "https://%s/personalaccount/account/registration",
                 "data": "{'PhoneNumber':'%s'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiZFw$aX<=?<bS`6WZ7y|TEpT#gXL4a}ZDn!": {
                 "url": "https://%s/send_sms/",
                 "data": "{'phone':'%s'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiVQ^_KWnpu9aAA2abzv=Va&KpHVQp<?as": {
                 "url": "https://%s/api/auth/register",
                 "data": "{'phone':'%s','password':'genius_maximus_07'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>Aic5Go}X>Dn8E@fnIb97;LE^>7(aB^>Fa$#+4WpV": {
                 "url": "https://%s/site/CheckAuthLogin",
                 "data": "{'phone_or_email':'+%s'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiVQ^_KWo%?`a$#g|E_GooaB^>Fa$#+4WpV": {
                 "url": "https://%s/v1/sign?login=%s&step=phone-check&fb_id=null&fb_token=null&lang=ru",
-                "formating":true
-                },
-
+                "formating": true
+        },
         "bZ>AicXxL#Wpr&Wa&;|ma&KpHVQp<?as": {
                 "url": "https://%s/cat/runprog.html",
                 "data": "{'m_phone':'%s','mode':'sendSms','syf_prog':'clients-services','getSysParam':'yes'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AicXxL#W@&C=Z7y<kEpT#gXL4a}ZDn!": {
                 "url": "https://%s/api/smslocker/sendcode",
                 "data": "{'phone':'+%s'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiW@&gWaB^v5WiE1cEpT#gXL4a}ZDn!": {
                 "url": "https://%s/ajax/register_phone_code.php",
                 "data": "{'phone':'+%s','action':'getCode','register_call':'Y'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiW^Zp~VqtD%E^>7(aB^>Fa$#+4WpV": {
                 "url": "https://%s/api?phone=%s&call=customers/sendVerificationCode&g-recaptcha-response=",
-                "formating":true
-                },
-
+                "formating": true
+        },
         "bZ>AiW^!p|Ze(*~Y;|HTa&;|ma&KpHVQp<?as": {
                 "url": "https://%s/assets/components/pl/connector.php",
                 "data": "{'MobilePhone':'+%s','casePar':'authSendsms'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiV{&aSXJvG4VQyn#axP<UZ7y|TEpT#gXL4a}ZDn!": {
                 "url": "https://%s/api/veryfyaccount",
                 "json": "{'phone':'+%s','grant_type':'password','client_id':'gcarAppMob','client_secret':'SomeRandomCharsAndNumbersMobile'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiXk~13X)bMLEpT#gXL4a}ZDn!": {
                 "url": "https://%s/api/healthy/accounts/login",
                 "data": "{'phone':'%s','platform':'PISWeb'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiVQ^_KXl-F~VJ>ubEpT#gXL4a}ZDn!": {
                 "url": "https://%s/stable/entrance?contact=%s",
-                "formating":true
-                },
-
+                "formating": true
+        },
         "bZ>AiVQ^_KX>Dh9axP<UZ7pzeZ)b90ZEa<8": {
                 "url": "https://%s/account/v1/phones/verify",
                 "data": "{'phone_number':'%s','region_code':'RU'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AibY*gKVJ$H(X>Me4X?A6DVQ_FRV{dIOaB^>Fa$#+4WpV": {
                 "url": "https://%s/api/authorization?locale=ru",
                 "data": "{'phone':'+%s','mode':'request','phone_permission':'unknown','stream_id':0,'v':3,'appversion':'3.20.6','osversion':'unknown','devicemodel':'unknown'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiX>Mk3a&2LBX=8IPd0}p3Wq2)ca&KpHVQp<?as": {
                 "url": "https://%s/api/v1/registration/confirmation/phone/send/",
                 "data": "{'phone':'%s','csrfmiddlewaretoken':'','country':{\"7\": \"RU\", \"380\": \"UA\", \"375\": \"BE\"}}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiX?kfcbzv=Va&KpHVQp<?as": {
                 "url": "https://%s/api/auth/sms-login",
                 "json": "{'phone':'+%s'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiYhiP6X)bGeEpT#gXL4a}ZDn!": {
                 "url": "https://%s/util/send-app-link",
                 "data": "{'address':'%s'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiY;R$1c`jpbZ7y|TEpT#gXL4a}ZDn!": {
                 "url": "https://%s/funct/ajax/registration/code",
                 "data": "{'phone':'%s'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiZDDI+a&K&Gb1rgqEpT#gXL4a}ZDn!": {
                 "url": "https://%s/bitrix/components/aloe/aloe.user/login_new.php",
                 "data": "{'data':'%s','metod':'postreg'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AicXxL#ZDnqCE_GooaB^>Fa$#+4WpV": {
                 "url": "https://%s/kiev/delivery/profile/show-verify.html",
                 "data": "{'phone':'%s','do':'phone'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiZFw$jX>)XCa${k0XfAbOEpT#gXL4a}ZDn!": {
                 "url": "https://%s/ru/send/sms/registration?number=+%s",
-                "formating":true
-                },
-
+                "formating": true
+        },
         "bZ>AicXxL#ZEtRGVqtD;E@N+PE_GooaB^>Fa$#+4WpV": {
                 "url": "https://%s/api/mobapplink/send",
                 "data": "{'phone':'+%s'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiVPj)&b#8PnZFw$dVQpn|EpT#gXL4a}ZDn!": {
                 "url": "https://%s/signup_send_sms/",
                 "data": "{'phone':'%s'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AicXxL#ZfSX8ZDB5QbuDmmZ)b90ZEa<8": {
                 "url": "https://%s/ajax/sendSMS.php",
                 "data": "{'phone':'%s'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AicXxL#Zfq`fVJ&cSZ)b90ZEa<8": {
                 "url": "https://%s",
                 "data": "{'phone':'%s','method':'sendCode','registration':'N','sessid':'bf70db951f54b837748f69b75a61deb4','component':'bxmaker.authuserphone.login'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiZf-4OVRB?Ha&;|ma&KpHVQp<?as": {
                 "url": "https://%s/api/1.0/covid/login",
                 "json": "{'phone':'%s'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiaA|UHXK8M4ZDn$AWNB_La&;|ma&KpHVQp<?as": {
                 "url": "https://%s/index.php?route=sms/login/sendreg",
                 "data": "{'telephone':'+%s'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiaA|saVQXP}VQwyCZ*47ba&KpHVQp<?as": {
                 "url": "https://%s/auth/ajax.php",
                 "data": "{'phone':'+%s','method':'sendCode'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiaA|saVRLD2X?l8LE^>7(aB^>Fa$#+4WpV": {
                 "url": "https://%s/api/phoneCode.php",
                 "json": "{'phone':'%s'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiV_{-xZe?^XaBN|2WprU{X>M;Wbzv=Va&KpHVQp<?as": {
                 "url": "https://%s/service/sms?phone=%s",
-                "formating":true
-                },
-
+                "formating": true
+        },
         "bZ>AicXxL#aB^>Rb#rKGE^>7(aB^>Fa$#+4WpV": {
                 "url": "https://%s/php/profile.php",
                 "data": "{'phone':'+%s','mode':'sms'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>Aia%p2|W?^k<Y<VtnbuDmmZ)b90ZEa<8": {
                 "url": "https://%s/ajax/sms_activities/sms_validate_phone.php",
                 "data": "{'phone':'+%s'}",
-                "formating":false
-                },
-        
+                "formating": false
+        },
         "bZ>Aia%p93bZ>Glbzv=Va&KpHVQp<?as": {
                 "url": "https://%s/api/users/register-sms/",
                 "data": "{'phone':'%s','retry':0}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>Aia&>fJcxf(jbuDmmZ)b90ZEa<8": {
                 "url": "https://%s/ajax_auth.html",
                 "data": "{'1':'%s','c':'3'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>Aib76UJa%poea&;|ma&KpHVQp<?as": {
                 "url": "https://%s/?route=parse/whats",
                 "data": "{'phone':'%s'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>Aib7*gHVQyq|Xm58ea&;|ma&KpHVQp<?as": {
                 "url": "https://%s/sms/password-request/",
                 "data": "{'phone':'+%s','resend':0}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>Aib8TUAbS`snVPj=2aB^>Fa$#+4WpV": {
                 "url": "https://%s/api/users/request_confirmation_code/",
                 "json": "{'mobile':'+%s','action':'confirm_mobile'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AicXxL#b8T}pVlHxZEpT#gXL4a}ZDn!": {
                 "url": "https://%s/bitrix/components/sms4b/sms.demo/ajax.php",
                 "data": "{'demo_number':'+%s','ajax_demo_send':'1'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>Aib9G^EWOHa~E^>7(aB^>Fa$#+4WpV": {
                 "url": "https://%s/mobile_api/register_mobile_user?phone=%s",
-                "formating":true
-                },
-
+                "formating": true
+        },
         "bZ>Aib9HlQX=Zh5X)bbgEpT#gXL4a}ZDn!": {
                 "url": "https://%s/sms_send_ajax.php",
                 "data": "{'phone':'%s','name':'false'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiV{B<<ZgeeSaA_`cb#rKGEp1_QbY*fba&;|ma&KpHVQp<?as": {
                 "url": "https://%s/api/v1/auth/init",
                 "json": "{'phone':'%s'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AibYWs)b8Bxdb9F6na&KpHVQp<?as": {
                 "url": "https://%s/",
                 "data": "{'LOGIN':'%s','ACTION':'GET_CODE','COMPONENT_NAME':'AUTH','IS_AJAX':'Y'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiY-=ubVPbM=b1rgqEpT#gXL4a}ZDn!": {
                 "url": "https://%s/reg/",
                 "data": "{'phone':'%s','action':'phone'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AicXxL#bYXH~ZggpGZ!KnFZE0+IE@N+PEpT#gXL4a}ZDn!": {
                 "url": "https://%s/wp-admin/admin-ajax.php",
                 "data": "{'phone':'%s','action':'callback_phonenumber'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AibYXaDEplmeZ7y<kEpT#gXL4a}ZDn!": {
                 "url": "https://%s/ajax/ppp/ppp_back_call.php?URL=/",
                 "data": "{'BACK_CALL_PHONE':'%s','RECALL':'Y'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AibZBL0X?A5UaB^=gaB^>Fa$#+4WpV": {
                 "url": "https://%s/auth/signup",
                 "json": "{'phone':'+%s'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AicXxL#barofVPSA|WouzBa&;|ma&KpHVQp<?as": {
                 "url": "https://%s/bitrix/ajax/form_user_new.php?confirm_register=1",
                 "data": "{'tel':'+%s','change_code':1}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiVQ_FRWN&R@E_GvQX)bbgEpT#gXL4a}ZDn!": {
                 "url": "https://%s/api/v1/parent/signup_start",
                 "json": "{'phone':'+%s','first_name':'-','utm_data':{},'via':'call'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiVQ_FRWN&R@E_GvQX)bbgEpT#gXL4a}ZDn!": {
                 "url": "https://%s/api/v1/parent/signup_start",
                 "json": "{'phone':'+%s','first_name':'-','utm_data':{},'via':'sms'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiVlH)bVQF$Ma&;|ma&KpHVQp<?as": {
                 "url": "https://%s/api/v1/login/",
                 "data": "{'login':'+%s'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>Aic4c~LbYXaDE@N+PEpT#gXL4a}ZDn!": {
                 "url": "https://%s/api/employment/getsmscode?phone=+%s&city=561&callback=jsonp_callback_35979",
-                "formating":true
-                },
-
+                "formating": true
+        },
         "bZ>AiaAA2ac4>2AE^>7(aB^>Fa$#+4WpV": {
                 "url": "https://%s/api/Auth/code/request",
                 "data": "{'phoneNumber':'+%s'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>Aib7*gHE_QQkE^>7(aB^>Fa$#+4WpV": {
                 "url": "https://%s/ajax/auth/postSms/",
                 "data": "{'phone':'%s'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiVQ^_KX=870YHwmLV{a{Ra&KpHVQp<?as": {
                 "url": "https://%s/api/auth/verification_code",
                 "json": "{'phone':'%s'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiVQ^_KcW-xhZ*psME^>7(aB^>Fa$#+4WpV": {
                 "url": "https://%s/v2/site/send-code",
                 "json": "{'phone':'%s','type':2}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiV{B<<Zgg`lV{B!1WpZ<AbY(7bbuDmmZ)b90ZEa<8": {
                 "url": "https://%s/callback/run.php",
                 "data": "{'num':'%s','siteid':'62731','title':'Онлайн-консультант','referrer':'https://m.cleversite.ru/call'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiVQ_FRV{C7AWNdGFVQh4HE^>7(aB^>Fa$#+4WpV": {
                 "url": "https://%s/demo/send-code",
                 "json": "{'country': 2,'phone': '%s','roistatVisit': 47637,'experiments': {'new_header_title': '1'}}",
-                "formating":false
-                },
-
-
+                "formating": false
+        },
         "bZ>AiVQ^_KV`*V-E^>7(aB^>Fa$#+4WpV": {
                 "url": "https://%s/sms/v1/send-validation-code/",
                 "json": "{'phone': '+%s', 'type': 'authenticateCode'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiVQ^_KWo~X|a%X92VJ>5DZ7pzeZ)b90ZEa<8": {
                 "url": "https://%s/auth/api/development/lor",
                 "json": "{'referrer':'ennergiia','via_sms':true,'phone':'+%s'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiZEtg9Z+9+ob#!5PX)bbgEpT#gXL4a}ZDn!": {
                 "url": "https://%s/ajax_keycode.html",
                 "data": "{'1': '%s'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiY-=uQZgy#Oa&InjbuDmmZ)b90ZEa<8": {
                 "url": "https://%s/lk2/lka/patient/refreshCode",
                 "data": "{'phone': '%s'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiZFymEX)a=AY;<L8Wn*t`E@F8taB^>Fa$#+4WpV": {
                 "url": "https://%s/api/v1/auth/check-phone?lang=ru",
                 "data": "{'phone': '%s'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiVQ_FRYhiMAb7gEUa&;|ma&KpHVQp<?as": {
                 "url": "https://%s/api/v1/phone/",
                 "data": "{'phone': '%s'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>Aibz)^MaBXvKE^l&YE^>7(aB^>Fa$#+4WpV": {
                 "url": "https://%s/esb/iqos-phone/validate",
                 "json": "{'phone': '%s'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiVQ^_KX?AHYa&;|ma&KpHVQp<?as": {
                 "url": "https://%s/mobileapi/user/register/phone/v6",
                 "data": "{'phone': '%s'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiaBOLAYc6zUV`wdKa&KpHVQp<?as": {
                 "url": "https://%s/register/",
                 "json": "{'phone': '%s'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiVQ^_KXK!?AZe(S0E@N+PEpT#gXL4a}ZDn!": {
                 "url": "https://%s/v2/auth/sms/send?auth_type=sms&locale=ru",
                 "data": "{'phone_number': '%s'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiVQ^_JaB^vFWiDZEd30%QWiDrIZ(?C=EpT#gXL4a}ZDn!": {
                 "url": "https://%s/api/v2/auth/sendVerificationCode",
                 "data": "{'phone': '%s'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiYhiPAVJ>xHEpT#gXL4a}ZDn!": {
                 "url": "https://%s/api/v2/login/",
                 "data": "{'phone': '%s'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiVQ_FRVr6c6bz)_5E^>7(aB^>Fa$#+4WpV": {
                 "url": "https://%s/login",
                 "data": "{'phone': '+%s'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiVqtA?WpXZJc`a~qZ)b90ZEa<8": {
                 "url": "https://%s/registration/?step=1",
                 "data": "{'phone': '+%s', 'submit': 'Запросить смс подтверждения', 'rules': 'on'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiH!wGJVR&gSV{dIPbzv=Va&KpHVQp<?as": {
                 "url": "https://%s/sendSMS.php",
                 "data": "{'tel': '%s'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiaB^>SZ+2mFE@N+PE_GooaB^>Fa$#+4WpV": {
                 "url": "https://%s/aj_record",
                 "data": "{'telephone':'%s'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiVQ^_KV`yb&E_q>YWMz0QaB^>Fa$#+4WpV": {
                 "url": "https://%s/api/v2/auth/sms",
                 "json": "{'phone':'%s'}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>Aia%E>}b97~LE^}#cZe?^Xa&;|ma&KpHVQp<?as": {
                 "url": "https://%s/cgi-bin/exchange.dll/RegisterHelper?phone=+%s&callmode=1&oper=9",
-                "formating":true
-                },
-
+                "formating": true
+        },
         "bZ>AicXxL#Z+dTTE^>7(aB^>Fa$#+4WpV": {
                 "url": "https://%s/api/composer-api.bx/_action/fastEntry",
                 "json": "{'phone': '%s', 'otpId': 0}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiXLWLQE_7jdX)SPaZ)b90ZEa<8": {
                 "url": "https://%s/api/v1/driver/session/verify",
                 "json": "{'phone': {'code': 1, 'number': '%s'}}",
-                "formating":false
-                },
-
+                "formating": false
+        },
         "bZ>AiVQ^_KV_|Z0ZE0*}E@N+PEpT#gXL4a}ZDn!": {
                 "url": "https://%s/",
                 "json": "{'operationName': 'enterPhone','variables': {'phone': '%s'},'query': 'mutation enterPhone($phone: String!) { enterPhone(phone: $phone)}'}",
-                "formating":false
-                }
+                "formating": false
+        }
 }
