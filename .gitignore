@@ -9,10 +9,14 @@ pyvenv.cfg
 config.json
 Scripts/
 
-db_models/__pycache__
-commands/__pycache__
-formats/__pycache__
-objects/__pycache__
-states/__pycache__
-targs/__pycache__
-temp/__pycache__
+bot/db_models/__pycache__
+bot/commands/__pycache__
+bot/formats/__pycache__
+bot/objects/__pycache__
+bot/states/__pycache__
+bot/targs/__pycache__
+bot/temp/__pycache__
+
+web/commands/__pycache__
+web/db_models/__pycache__
+web/objects/__pycache__
