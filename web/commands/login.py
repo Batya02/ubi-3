@@ -34,22 +34,21 @@ async def login():
             return redirect(url_for("login"))
 
         else:
+                try:
+                    check_admin = await AdminAuth.objects.get(login=login)
+                    if len(check_admin) > 0:
+                        hash_pass = md5(password.encode("utf-8")).hexdigest()
 
-                check_admin = await AdminAuth.objects.get(login=login)
+                        if admin_password == hash_pass:
 
-                if len(check_admin) > 0:
-                    hash_pass = md5(password.encode("utf-8")).hexdigest()
-
-                    if admin_password == hash_pass:
-
-                        resp = redirect(url_for("users"))
-                        resp.set_cookie('admin', hash_pass)
-                        return resp
-                    else:
-                        flash("Неверный пароль!")
-                        return redirect(url_for("login"))
-                
-                else:
+                            resp = redirect(url_for("users"))
+                            resp.set_cookie('admin', hash_pass)
+                            return resp
+                        else:
+                            flash("Неверный пароль!")
+                            return redirect(url_for("login"))
+                            
+                except NoMatch:
 
                     try:
                         check_user = await UserAuth.objects.get(login=login)
