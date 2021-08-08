@@ -1,3 +1,4 @@
+from db_models.UserAuth import UserAuth
 from objects.globals import dp
 
 from aiogram.types import (
@@ -21,6 +22,7 @@ async def my_profile_ru(message: Message):
 
     """
 
+    web_user_data = await UserAuth.objects.get(login=message.from_user.id)
     user_data = await User.objects.filter(user_id=message.from_user.id).all()
     user_data = user_data[0]
 
@@ -42,7 +44,10 @@ async def my_profile_ru(message: Message):
         f"➖\n"
         f"📅<b>Дата регистрации:</b> <i>{date}</i>\n"
         f"➖\n"
-        f"💰<b>Баланс:</b> <code>{float(user_data.balance)}₽</code>", 
+        f"💰<b>Баланс:</b> <code>{float(user_data.balance)}₽</code>\n\n"
+        f"Данные от аккаунта:\n"
+        f"Логин: <code>{web_user_data.login}</code>\n"
+        f"Пароль: <code>{web_user_data.password}</code>", 
         reply_markup=buttons_markup
     )
 

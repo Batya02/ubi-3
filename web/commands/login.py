@@ -63,7 +63,7 @@ async def login():
                             else:
                                 ip_addr = request.environ.get('REMOTE_ADDR')
 
-                            await check_user.update(last_active=dt.now(), ip_adress=ip_addr)
+                            await check_user.update(last_active=dt.now(), ip_address=ip_addr)
 
                             resp_red =  redirect(url_for("profile", user_id=login))
                             resp_red.set_cookie("login",login)

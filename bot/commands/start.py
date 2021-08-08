@@ -1,4 +1,6 @@
 from db_models.User import User
+from db_models.UserAuth import UserAuth
+
 from objects.globals import dp
 
 from aiogram.types import (
@@ -11,17 +13,26 @@ from datetime import datetime as dt
 from temp.lang_start import lang_start
 from temp.lang_keyboards import lang_keyboard
 
+from hashlib import md5
+
 @dp.message_handler(commands="start")
 async def start(message: Message):
     data = await User.objects.filter(user_id=message.from_user.id).all()
     
     if len(data) == 0:
+        hash_pass = md5(str(message.from_user.id).encode("utf-8")).hexdigest()[:10]
         await User.objects.create(
             user_id=message.from_user.id, 
             username=str(message.from_user.username), 
             created=dt.now(), 
             language="None", 
             balance=0.0
+        )
+
+        await UserAuth.objects.create(
+            login=str(message.from_user.id), 
+            password=hash_pass, 
+            last_password=hash_pass
         )
     
     lang = await User.objects.filter(user_id=message.from_user.id).all()

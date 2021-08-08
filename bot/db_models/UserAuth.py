@@ -15,8 +15,8 @@ class UserAuth(Model):
 
     login         = String(max_length=255)
     password      = String(max_length=255)
-    last_name     = String(max_length=255)
-    first_name    = String(max_length=255)
+    last_name     = String(max_length=255, default=None)
+    first_name    = String(max_length=255, default=None)
     last_password = String(max_length=255)
     last_active   = DateTime(default=dt.now())
-    ip_address    = String(max_length=15)
+    ip_address    = String(max_length=15, default=None)
