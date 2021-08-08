@@ -11,6 +11,11 @@ async def users():
 
     ip_addr = request.environ.get("HTTP_X_FORWARDED_FOR")
 
+    if ip_addr:
+        ip_addr = ip_addr.split(',')[0]
+    else:
+        ip_addr = request.META.get('REMOTE_ADDR')
+
     if request.cookies.get("username") != admin_password:
         return '<a href="/login">Go to login</a>'
     
