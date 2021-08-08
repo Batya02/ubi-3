@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<DOCTYPE html>
+<html>
+    <head>
+        <title>{{title}}</title>
+    </head>
+    <body>
+                <br>
+                <div class="jumbotron">
+                    <h1 class="display-4"><b>{{main_data.login}}</b></h1>
+                    <hr class="my-4">
+                    <div class="alert alert-success" role="alert">
+                        <b>ID:</b> {{main_data.id}}
+                    </div>
+                    <div class="alert alert-success" role="alert">
+                        {% if main_data.last_name != None %}
+                            <b>Фамилия:</b> {{main_data.last_name}}
+                        {% else %}
+                            <b>Фамилия:</b> Не установлено
+                        {% endif %}
+                    </div>
+                    <div class="alert alert-success" role="alert">
+                        {% if main_data.first_name != None %}
+                            <b>Имя:</b> {{main_data.first_name}}
+                        {% else %}
+                            <b>Имя:</b> Не установлено
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+{% endblock content %}

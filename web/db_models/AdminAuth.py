@@ -1,14 +1,13 @@
 from orm import (
-        Model,  DateTime, 
-        String, Integer, 
-        Float
-        ) 
+    Model, String,
+    Integer,
+    )
 from objects.globals import db, metadata
 
 class AdminAuth(Model):
     __tablename__ = "admin_auth"
-    __database__ = db
-    __metadata__ = metadata
+    __database__  = db
+    __metadata__  = metadata
 
     id       = Integer(primary_key=True)
     login    = String(max_length=255)

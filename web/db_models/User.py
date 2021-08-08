@@ -8,8 +8,8 @@ from datetime import datetime as dt
 
 class User(Model):
     __tablename__ = "all_users"
-    __database__ = db
-    __metadata__ = metadata
+    __database__  = db
+    __metadata__  = metadata
 
     id = Integer(primary_key=True)
 

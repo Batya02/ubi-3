@@ -1,14 +1,14 @@
 from orm import (
-        Model,  DateTime, 
-        String, Integer
-        ) 
+    Model,  DateTime,
+    String, Integer
+    )
 from objects.globals import db, metadata
 from datetime import datetime as dt
 
 class FAO(Model):
     __tablename__ = "phone_all_orders"
-    __database__ = db
-    __metadata__ = metadata
+    __database__  = db
+    __metadata__  = metadata
 
     id      = Integer(primary_key=True)
     user_id = Integer()

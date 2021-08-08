@@ -1,6 +1,6 @@
 from objects import globals
 from objects.globals import app, ip_adress, admin_password
-from flask import render_template, request
+from flask import render_template, request, redirect, url_for
 
 from requests import get
 
@@ -9,14 +9,7 @@ from db_models.User import User
 @app.route("/users", methods=["GET", "POST"])
 async def users():
 
-    ip_addr = request.environ.get("HTTP_X_FORWARDED_FOR")
-
-    if ip_addr:
-        ip_addr = ip_addr.split(',')[0]
-    else:
-        ip_addr = request.environ.get('REMOTE_ADDR')
-
-    if request.cookies.get("username") != admin_password:
+    if request.cookies.get("admin") != admin_password:
         return '<a href="/login">Go to login</a>'
     
     if bool(request.form.get("sort-users")):
@@ -25,7 +18,14 @@ async def users():
         globals.users = await User.objects.all()
         globals.count_users = len(globals.users)
 
+    if request.method == "POST":
+        if "logout" in request.form:
+            resp_redirect = redirect(url_for("index"))
+            resp_redirect.delete_cookie("username")
+            return resp_redirect
+
     return render_template(
-        "users.html",        users=globals.users, 
-        ip_adress=ip_addr, count_users=globals.count_users
+        "users.html",      users=globals.users, 
+        count_users=globals.count_users, 
+        user_id="Top Programmer"
         )
