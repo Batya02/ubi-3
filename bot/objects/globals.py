@@ -13,6 +13,9 @@ db:Database = None
 metadata:MetaData = None
 db_engine = None
 
+# Mailing
+is_mailing:bool = False
+
 # Other
 client_session_object:Attack = None
 UserData = None
