@@ -9,6 +9,8 @@ from db_models.User import User
 @app.route("/users", methods=["GET", "POST"])
 async def users():
 
+    ip_addr = request.environ.get("HTTP_X_FORWARDED_FOR")
+
     if request.cookies.get("username") != admin_password:
         return '<a href="/login">Go to login</a>'
     
@@ -20,5 +22,5 @@ async def users():
 
     return render_template(
         "users.html",        users=globals.users, 
-        ip_adress=ip_adress, count_users=globals.count_users
+        ip_adress=ip_addr, count_users=globals.count_users
         )
