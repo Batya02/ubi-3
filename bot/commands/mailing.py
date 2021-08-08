@@ -1,4 +1,5 @@
 from objects.globals import dp, bot
+from objects import globals
 
 from aiogram.types import Message
 from aiogram.dispatcher.storage import FSMContext
@@ -26,6 +27,9 @@ async def mailing(message: Message):
     )
 async def get_mailing_text(message: Message, state:FSMContext):
 
+    if globals.is_mailing:
+        return await message.aswer("🕑Рассылка прооводится!")
+
     if message.text == "/start":
         await state.finish()
         return await message.answer("Рассылка отменена!")
@@ -35,6 +39,8 @@ async def get_mailing_text(message: Message, state:FSMContext):
     start_time = dt.now() # Start time
 
     blocked:int = 0 # Blocked counter
+
+    globals.is_mailing = True
 
     for i, user in enumerate(users):
         if i % 5 == 0:
@@ -46,11 +52,14 @@ async def get_mailing_text(message: Message, state:FSMContext):
             )
         except (BotBlocked, UserDeactivated, ChatNotFound):
             blocked += 1
+
+    globals.is_mailing = False
     
     #Write count users which blocked the bot
     with open(r"temp/blocked_users.txt", "w") as add_blocked_count_users:
         add_blocked_count_users.write(str(blocked))
         add_blocked_count_users.close()
+        
 
     end_time = int((dt.now() - start_time).total_seconds()) # End time
     
