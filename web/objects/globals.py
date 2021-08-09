@@ -14,5 +14,6 @@ db_engine = None         # Db engine
 
 users:list = []          # All users
 count_users:int = 0      # Count users
+web_data_users:list = [] 
 
 admin_password:str = ""  # Admin password

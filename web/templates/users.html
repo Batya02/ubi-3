@@ -13,24 +13,26 @@
                             <th>#</th>
                             <th>User Id</th>
                             <th>Username</th>
-                            <th>Date Created</th>
                             <th>Language</th>
-                            <th>Balance</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for _ in users %}
                         <tr>
                             <th scope="row">{{ _.id }}</th>
-                            <td>{{_.user_id}}</td>
+                            <th>
+                                <div class="btn-group dropright">
+                                <form method="post">
+                                    <button type=submit" class="btn btn-secondary dropdown-toggle btn-sm" name="more-info" value="{{ _.user_id }}">{{ _.user_id }}</button>
+                                </form>
+                                </div>
+                            </th>
                             {% if _.username == "None" %}
                                 <td>Отсутсвует</td>
                             {% else %}
-                                <td><a href="https://t.me/{{_.username}}">{{_.username}}</a></td>
+                                <td><a href="https://t.me/{{ _.username }}">{{ _.username }}</a></td>
                             {% endif %}
-                            <td>{{(_.created | string)[:-7]}}</td>
-                            <td>{{_.language}}</td>
-                            <td>{{_.balance}}</td>
+                            <td>{{ _.language }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
