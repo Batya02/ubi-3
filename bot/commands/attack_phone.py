@@ -34,7 +34,7 @@ async def attack_phone_RU(message: Message):
 
     await message.answer(
         text=f"Отмена /start\n"
-        f"Введите номер телефона(without +):"
+        f"Введите номер телефона(без +):"
     )
 
     await Phone.get_phone_targ.set()

@@ -7,6 +7,15 @@ from db_models.UserData import UserData
 
 @dp.message_handler(commands="stat")
 async def stat(message: Message):
+    """ Give me statistics
+
+    :param: message
+    :type: Message
+    :return: Bot message answer
+    :rtype: Message
+    
+    """
+
     if message.from_user.id in config["admins"]:
 
         all_users = await User.objects.all()

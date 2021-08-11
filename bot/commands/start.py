@@ -4,9 +4,9 @@ from db_models.UserAuth import UserAuth
 from objects.globals import dp
 
 from aiogram.types import (
-        Message,              InlineKeyboardMarkup, 
-        InlineKeyboardButton, ReplyKeyboardMarkup
-        )
+    Message,              InlineKeyboardMarkup, 
+    InlineKeyboardButton, ReplyKeyboardMarkup
+    )
 
 from datetime import datetime as dt
 
@@ -17,6 +17,15 @@ from hashlib import md5
 
 @dp.message_handler(commands="start")
 async def start(message: Message):
+    """ Start function
+
+    :param: message
+    :type: Message
+    :return: Bot message answer
+    :rtype: Message
+
+    """
+
     data = await User.objects.filter(user_id=message.from_user.id).all()
     
     if len(data) == 0:

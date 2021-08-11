@@ -1,7 +1,8 @@
 lang_keyboard = {
     "ENG": [
         ["👤My profile"], 
-        ["💣Attack number"]
+        ["💣Attack number"], 
+        ["✉️Send message"]
     ],   
     
     "RU": [
