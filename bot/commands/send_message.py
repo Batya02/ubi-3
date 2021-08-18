@@ -51,7 +51,7 @@ async def send_message_process(message: Message, state:FSMContext):
         f"Reply message (admin command): <code>/msg</code>"
     )
 
-    await message.answer(text=successful_send)
+    return await message.answer(text=successful_send)
 
 @dp.message_handler(commands="msg")
 async def reply_admin_message(message: Message):
