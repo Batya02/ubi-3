@@ -1,6 +1,7 @@
 SESSIONS_PATH = "../sessions"
 
 from os import listdir, path
+from asyncio import sleep
 
 from loguru import logger
 from telethon import TelegramClient
@@ -40,11 +41,13 @@ class Attack:
                     await self.client(JoinChannelRequest(self.link))
                 except ChannelPrivateError:
                     pass
-                
+
                 try:
                     await self.client.send_message(self.link, self.text)
                 except (UserBannedInChannelError, ChatWriteForbiddenError, ChannelPrivateError,):
                     pass
+
+                await sleep(2)
 
     async def leave_from_chat(self):
         for session_name, session_value in self.sessions.items():
