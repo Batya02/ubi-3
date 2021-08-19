@@ -33,18 +33,21 @@ async def my_profile_ru(message:Message):
             ])
 
     return await message.answer(
-        text=f"〰️\n"
+        text=f"➖\n"
         f"🌐<b>Язык:</b> {user_data.language}\n"
+        f"〰️\n"
         f"➖\n"
         f"📍<b>User ID:</b> {user_data.user_id}\n"
+        f"〰️\n"
         f"➖\n"
         f"📅<b>Дата регистрации:</b> <i>{date}</i>\n"
+        f"〰️\n"
         f"➖\n"
         f"💰<b>Баланс:</b> <code>{float(user_data.balance)}₽</code>\n"
         f"〰️\n\n"
-        f"🗝Данные от аккаунта:\n"
-        f"Логин: <code>{web_user_data.login}</code>\n"
-        f"Пароль: <code>{web_user_data.password}</code>",
+        f"🟢Данные от аккаунта:\n"
+        f"🗝Логин: <code>{web_user_data.login}</code>\n"
+        f"🗝Пароль: <code>{web_user_data.password}</code>",
         reply_markup=buttons_markup)
 
 @dp.message_handler(lambda message:message.text == "👤My profile")
