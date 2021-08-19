@@ -1,9 +1,9 @@
 from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from aiogram.dispatcher.storage import FSMContext
 
-from objects.globals import dp, bot, config
 from states.states import AttackChat
 from targs.attack_tg_chat import Attack
+from objects.globals import dp, bot, config
 
 @dp.message_handler(lambda message: message.text == "🚀Атаковать TG Chat")
 async def attack_chat(message:Message):
@@ -45,6 +45,5 @@ async def leave_from_chat(query:CallbackQuery):
 
     await attack_tg_chat.leave_from_chat()
 
-    return await bot.edit_message_text(chat_id=query.from_user.id, 
-    message_id=query.message.message_id, 
-    text="Выход из чата окончен.")
+    return await bot.edit_message_text(chat_id=query.from_user.id, message_id=query.message.message_id,
+            text="Выход из чата окончен.")

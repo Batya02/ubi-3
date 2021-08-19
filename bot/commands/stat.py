@@ -1,13 +1,12 @@
-from objects.globals import dp, config
-
 from aiogram.types import Message
 
+from objects.globals import dp, config
 from db_models.User import User
 from db_models.UserData import UserData
 
 @dp.message_handler(commands="stat")
 @dp.message_handler(lambda message: message.text=="📊Статистика")
-async def stat(message: Message):
+async def stat(message:Message):
     """ Give me statistics
 
     :param: message
@@ -33,5 +32,4 @@ async def stat(message: Message):
             f"💣Активировали бомбер: {len(activate_bomber)}\n"
             f"💎С приоритетным статусом: {len(prioritety_status)}\n"
             f"🪔Заблокировали: {int(blocked_users)}\n\n"
-            f"Узнать больше: {web_url}"
-        )
+            f"Узнать больше: {web_url}")

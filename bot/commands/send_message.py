@@ -1,16 +1,13 @@
-from objects.globals import dp, bot, config 
-
 from aiogram.types import Message
 from aiogram.dispatcher.storage import FSMContext
 
+from db_models.User import User
 from states.states import SendMessage
-
-from temp.lang_keyboards import lang_keyboard
-
-from db_models.User import User 
+from objects.globals import dp, bot, config 
+from temp.lang_keyboards import lang_keyboard 
 
 @dp.message_handler(lambda message: message.text == "✉️Отправить сообщение" or message.text == "✉️Send message")
-async def send_message(message: Message):
+async def send_message(message:Message):
 
     global main_data_user
     main_data_user = await User.objects.get(user_id=message.from_user.id)
@@ -23,11 +20,9 @@ async def send_message(message: Message):
     await message.answer(text=msg)
     await SendMessage.send_message_targ.set()
 
-@dp.message_handler(
-    lambda message: message.text not in [k[0] for k in lang_keyboard["RU"]], 
-    state=SendMessage.send_message_targ
-    )
-async def send_message_process(message: Message, state:FSMContext):
+@dp.message_handler(lambda message: message.text not in [k[0] for k in lang_keyboard["RU"]], 
+                    state=SendMessage.send_message_targ)
+async def send_message_process(message:Message, state:FSMContext):
 
     await state.finish()
 
@@ -48,13 +43,12 @@ async def send_message_process(message: Message, state:FSMContext):
         text=f"UserId: <code>{message.from_user.id}</code>\n"
         f"Username: {username}\n"
         f"Message: {message.text}\n"
-        f"Reply message (admin command): <code>/msg</code>"
-    )
+        f"Reply message (admin command): <code>/msg</code>")
 
     return await message.answer(text=successful_send)
 
 @dp.message_handler(commands="msg")
-async def reply_admin_message(message: Message):
+async def reply_admin_message(message:Message):
 
     if message.from_user.id == int(config["chat_id"]):
 
@@ -78,9 +72,6 @@ async def reply_admin_message(message: Message):
             f"✔️[Your message]: {format_user_message}\n" +\
             f"✔️[Admin message]: {my_message}\n"
 
-        await bot.send_message(
-            chat_id = format_user_id, 
-            text=reply_page
-        )
+        await bot.send_message(chat_id = format_user_id, text=reply_page)
 
         return await message.answer(text="✔️Сообщение успешно отправлено пользователю")

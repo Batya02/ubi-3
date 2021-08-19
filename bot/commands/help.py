@@ -1,7 +1,6 @@
-from objects.globals import dp
-
 from aiogram.types import Message
 
+from objects.globals import dp
 from db_models.User import User
 
 @dp.message_handler(commands="help")
