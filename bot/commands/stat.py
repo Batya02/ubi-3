@@ -6,6 +6,7 @@ from db_models.User import User
 from db_models.UserData import UserData
 
 @dp.message_handler(commands="stat")
+@dp.message_handler(lambda message: message.text=="📊Статистика")
 async def stat(message: Message):
     """ Give me statistics
 

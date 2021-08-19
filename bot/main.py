@@ -60,6 +60,9 @@ async def main():
     globals.bot = Bot(token=globals.config["token"], parse_mode="HTML")
     globals.dp = Dispatcher(globals.bot, storage=MemoryStorage())
 
+    bot_info:dict = await globals.bot.get_me()
+    logger.info(f"Bot username: @{bot_info.username}. Bot Id: {bot_info.id}")
+
     import commands
     
     await globals.dp.start_polling()

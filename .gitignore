@@ -1,13 +1,15 @@
 lib/
 bin/
-db/
 include/
 lib64/python3.9
 share/
-debug/
 pyvenv.cfg
-config.json
 Scripts/
+
+db/
+sessions/
+debug/
+config.json
 
 bot/db_models/__pycache__
 bot/commands/__pycache__
