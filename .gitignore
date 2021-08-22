@@ -22,3 +22,6 @@ bot/temp/__pycache__
 web/commands/__pycache__
 web/db_models/__pycache__
 web/objects/__pycache__
+
+alembic/__pycache__
+alembic/versions/__pycache__
