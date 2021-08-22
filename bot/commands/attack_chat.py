@@ -6,19 +6,53 @@ from targs.attack_tg_chat import Attack
 from objects.globals import dp, bot, config
 
 @dp.message_handler(lambda message: message.text == "🚀Атаковать TG Chat")
-async def attack_chat(message:Message):
+async def attack_chat(message: Message):
+    """Attack chat
+
+    :param: message
+        User info
+    :type: Message
+
+    """
+
     if message.from_user.id in config["admins"]:
         await message.answer(text="Введите username чата:")
         await AttackChat.get_link_chat_targ.set()
 
 @dp.message_handler(state=AttackChat.get_link_chat_targ)
-async def get_username_chat(message:Message, state:FSMContext):
+async def get_username_chat(message: Message, state: FSMContext):
+    """Get username chat
+        The function get username chat.
+
+    :param: message
+        User info
+    :type: Message
+
+    :param: state
+        This is states
+    :type: FSMContext
+
+    """
+
     await state.update_data(link=message.text)
     await message.answer(text="Введите текст:")
     await AttackChat.get_text_targ.set()
 
 @dp.message_handler(state=AttackChat.get_text_targ)
-async def get_text_chat(message:Message, state:FSMContext):
+async def get_text_chat(message: Message, state: FSMContext):
+    """Get text chat
+        The function get text from user.
+
+    :param: message
+        User info
+    :type: Message
+
+    :param: state
+        This is states
+    :type: FSMContext
+
+    """
+
     await state.update_data(text_chat=message.text)
     data = await state.get_data()
     
@@ -41,7 +75,15 @@ async def get_text_chat(message:Message, state:FSMContext):
     await message.answer(text=f"Атака завершена!\n"f"Канал: {link}", reply_markup=leave_from_chat_markup)
 
 @dp.callback_query_handler(lambda query: query.data == "leave-from-chat")
-async def leave_from_chat(query:CallbackQuery):
+async def leave_from_chat(query: CallbackQuery):
+    """Leave from chat
+        The function helping to leaved all accounts from chat.
+
+    :param: query
+        This is user quiries.
+    :type: CallbackQuery
+
+    """
 
     await attack_tg_chat.leave_from_chat()
 

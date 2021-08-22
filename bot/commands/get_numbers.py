@@ -1,19 +1,19 @@
 from json import loads
 from aiohttp import ClientSession
 
-from aiogram.types import (Message, InlineKeyboardMarkup, InlineKeyboardButton)
+from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
+from targs.updates import update_time
 from objects.globals import dp, config
 
 @dp.message_handler(lambda message: message.text == "📲Купить виртуальный номер")
-async def get_numbers(message:Message):
-
+@update_time
+async def get_numbers(message: Message):
+    message: Message = message[0]
     host_site_main = config["host_site_main"] # Host main
-
     # Get all data from services request
     async with ClientSession() as client_session:
         url_format = f"https://{host_site_main}/v1/guest/products/russia/any"
-
         async with client_session.get(url_format) as all_services:
             data_services = loads(await all_services.text())
             await client_session.close()

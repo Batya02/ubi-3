@@ -1,31 +1,35 @@
+import inspect
 from aiogram.types import Message
 
 from objects.globals import dp, config
-from db_models.User import User
+from db_models.UserAuth import UserAuth
 from db_models.UserData import UserData
+from targs.updates import update_time
 
 @dp.message_handler(commands="stat")
 @dp.message_handler(lambda message: message.text=="📊Статистика")
-async def stat(message:Message):
-    """ Give me statistics
+@update_time
+async def stat(message: Message):
+    """Give me statistics
 
     :param: message
     :type: Message
     :return: Bot message answer
     :rtype: Message
-    
+
     """
 
-    if message.from_user.id in config["admins"]:
+    message: Message = message[0]
 
-        all_users = await User.objects.all()
-        activate_bomber = await UserData.objects.all()
-        prioritety_status = await UserData.objects.filter(status="∞").all()
-        web_url:str = config["web_url"]
+    if message.from_user.id in config["admins"]:
+        all_users: UserAuth = await UserAuth.objects.all()
+        activate_bomber: UserData = await UserData.objects.all()
+        prioritety_status: UserData = await UserData.objects.filter(status="∞").all()
+        web_url: str = config["web_url"]
 
         with open(r"temp/blocked_users.txt", "r", encoding="utf-8") as load_blocked_users:
             blocked_users = load_blocked_users.read()
-        
+
         return await message.answer(
             text=f"📊Статистика:\n"
             f"⚔️Общее количество: {len(all_users)}\n"

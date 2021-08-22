@@ -1,15 +1,16 @@
 from datetime import datetime as dt
 
-from aiogram.types import (Message, InlineKeyboardMarkup, InlineKeyboardButton)
+from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
 from objects.globals import dp
-from db_models.User import User
 from db_models.UserAuth import UserAuth
 from formats.dateTime import datetime_format
+from targs.updates import update_time
 
 @dp.message_handler(lambda message:message.text == "👤Мой профиль")
-async def my_profile_ru(message:Message):
-    """ My profile (RU)
+@update_time
+async def my_profile_ru(message: Message):
+    """My profile (RU)
 
     :param: message
     :type: Message
@@ -18,11 +19,10 @@ async def my_profile_ru(message:Message):
 
     """
 
-    web_user_data = await UserAuth.objects.get(login=message.from_user.id)
-    user_data = await User.objects.filter(user_id=message.from_user.id).all()
-    user_data = user_data[0]
+    message: Message = message[0]
 
-    date = datetime_format(user_data.created)
+    user_data: UserAuth = await UserAuth.objects.get(login=message.from_user.id)
+    date: str = datetime_format(user_data.date_joined)
 
     buttons_markup = InlineKeyboardMarkup(
         inline_keyboard=[
@@ -37,7 +37,7 @@ async def my_profile_ru(message:Message):
         f"🌐<b>Язык:</b> {user_data.language}\n"
         f"〰️\n"
         f"➖\n"
-        f"📍<b>User ID:</b> {user_data.user_id}\n"
+        f"📍<b>User ID:</b> {user_data.login}\n"
         f"〰️\n"
         f"➖\n"
         f"📅<b>Дата регистрации:</b> <i>{date}</i>\n"
@@ -46,13 +46,13 @@ async def my_profile_ru(message:Message):
         f"💰<b>Баланс:</b> <code>{float(user_data.balance)}₽</code>\n"
         f"〰️\n\n"
         f"🟢Данные от аккаунта:\n"
-        f"🗝Логин: <code>{web_user_data.login}</code>\n"
-        f"🗝Пароль: <code>{web_user_data.password}</code>",
+        f"🗝Логин: <code>{user_data.login}</code>\n"
+        f"🗝Пароль: <code>{user_data.password}</code>",
         reply_markup=buttons_markup)
 
 @dp.message_handler(lambda message:message.text == "👤My profile")
-async def my_profile_eng(message:Message):
-    """ My profile (ENG)
+async def my_profile_eng(message: Message):
+    """My profile (ENG)
 
     :param: message
     :type: Message
@@ -61,9 +61,8 @@ async def my_profile_eng(message:Message):
 
     """
 
-    user_data = await User.objects.filter(user_id=message.from_user.id).all()
+    user_data = await UserAuth.objects.filter(login=message.from_user.id).all()
     user_data = user_data[0]
-
     date = dt.strftime(dt.now(), "%Y-%m-%d %H:%M:%S")
 
     buttons_markup = InlineKeyboardMarkup(
@@ -75,11 +74,19 @@ async def my_profile_eng(message:Message):
             ])
 
     return await message.answer(
-        text=f"🌐<b>Язык:</b> {user_data.language}\n"
+        text=f"➖\n"
+        f"🌐<b>Language:</b> {user_data.language}\n"
+        f"〰️\n"
         f"➖\n"
-        f"📍<b>User ID:</b> {user_data.user_id}\n"
+        f"📍<b>User ID:</b> {user_data.login}\n"
+        f"〰️\n"
         f"➖\n"
-        f"📅<b>Date registration:</b> <i>{date}</i>\n"
+        f"📅<b>Date joined:</b> <i>{date}</i>\n"
+        f"〰️\n"
         f"➖\n"
-        f"💰<b>Balance:</b> <code>{float(user_data.balance)}₽</code>",
+        f"💰<b>Balance:</b> <code>{float(user_data.balance)}₽</code>\n"
+        f"〰️\n\n"
+        f"🟢The data from account:\n"
+        f"🗝Login: <code>{user_data.login}</code>\n"
+        f"🗝Password: <code>{user_data.password}</code>",
         reply_markup=buttons_markup)
