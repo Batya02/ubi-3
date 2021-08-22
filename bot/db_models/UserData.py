@@ -14,5 +14,5 @@ class UserData(Model):
     user_id = Integer()
     created = DateTime(default=dt.now())
     status = String(max_length=255)
-    last_phone = String(max_length=50, default=None)
-    last_created = DateTime(default=None)
+    last_phone = String(max_length=50, allow_null=True)
+    last_created = DateTime(default=dt.now())

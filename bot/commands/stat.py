@@ -10,7 +10,7 @@ from targs.updates import update_time
 @dp.message_handler(lambda message: message.text=="📊Статистика")
 @update_time
 async def stat(message: Message):
-    """Give me statistics
+    """Show statistics
 
     :param: message
     :type: Message
@@ -24,7 +24,7 @@ async def stat(message: Message):
     if message.from_user.id in config["admins"]:
         all_users: UserAuth = await UserAuth.objects.all()
         activate_bomber: UserData = await UserData.objects.all()
-        prioritety_status: UserData = await UserData.objects.filter(status="∞").all()
+        prioritety_status: UserData = await UserData.objects.all(status="∞")
         web_url: str = config["web_url"]
 
         with open(r"temp/blocked_users.txt", "r", encoding="utf-8") as load_blocked_users:
