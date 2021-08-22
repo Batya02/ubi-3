@@ -50,7 +50,7 @@ async def main():
         )
 
     #Connect to database
-    globals.db = Database(r"sqlite:///../db/UBI.sqlite")
+    globals.db = Database(r"sqlite:///../db/db.sqlite")
     globals.metadata = MetaData()
 
     globals.db_engine = create_engine(str(globals.db.url))
