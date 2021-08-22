@@ -7,7 +7,9 @@ from loguru import logger
 from telethon import TelegramClient
 from telethon.tl.functions.channels import JoinChannelRequest, LeaveChannelRequest
 from telethon.errors.rpcerrorlist import (UserBannedInChannelError, ChatWriteForbiddenError,
-                                          ChannelPrivateError)
+        ChannelPrivateError)
+
+
 @logger.catch
 class Attack:
 
@@ -15,17 +17,30 @@ class Attack:
     text:str
 
     def __init__(self, link, text):
+        """Initialization
+
+        :param: link
+            This is a link from tg chat
+        :type: str
+
+        :param: text
+            This is a user text
+        :type:str
+
+        """
+
         self.link = link
         self.text = text
         self.sessions:dict = {}
         self.client:TelegramClient = None
 
     async def start(self):
+        """Start attack"""
+
         sessions_dir = listdir(SESSIONS_PATH)
 
         for session in sessions_dir:
             session_data = listdir(path.join(r"%s/%s" % (SESSIONS_PATH, session)))
-
             session_name = (session_data[0]).replace(".session", "")
             session_config = open(r"%s/%s/%s" % (SESSIONS_PATH, session, session_data[1])).readlines()
 
@@ -50,8 +65,9 @@ class Attack:
                 await sleep(2)
 
     async def leave_from_chat(self):
-        for session_name, session_value in self.sessions.items():
+        """Leave from tg chat"""
 
+        for (session_name, session_value) in self.sessions.items():
             async with TelegramClient(r"%s/%s/%s" % (SESSIONS_PATH, session_name, session_name), session_value[0], session_value[1]) as client:
                 await client.connect()
                 try:
@@ -59,5 +75,25 @@ class Attack:
                 except ChannelPrivateError:pass
 
     def cache_completed_session(self, session_name:str, api_id:int, api_hash:str) -> dict:
+        """Cache completed sessions
+
+        :param: session_name
+            This is a session name
+        :type: str
+
+        :param: api_id
+            This is a api id from tg-acc
+        :type: int
+
+        :param: api_hash
+            This is a api hash from tg-acc
+        :type: str
+
+        :rparam: self.sessions
+            This is completed sessions
+        :rtype: dict
+
+        """
+
         self.sessions[session_name] = [api_id, api_hash]
         return self.sessions
