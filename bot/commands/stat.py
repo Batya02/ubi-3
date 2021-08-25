@@ -5,6 +5,7 @@ from objects.globals import dp, config
 from db_models.UserAuth import UserAuth
 from db_models.UserData import UserData
 from targs.updates import update_time
+from targs.users import last_day_users
 
 @dp.message_handler(commands="stat")
 @dp.message_handler(lambda message: message.text=="📊Статистика")
@@ -33,6 +34,7 @@ async def stat(message: Message):
         return await message.answer(
             text=f"📊Статистика:\n"
             f"⚔️Общее количество: {len(all_users)}\n"
+            f"👀Активные за день: {await last_day_users()}\n"
             f"💣Активировали бомбер: {len(activate_bomber)}\n"
             f"💎С приоритетным статусом: {len(prioritety_status)}\n"
             f"🪔Заблокировали: {int(blocked_users)}\n\n"
