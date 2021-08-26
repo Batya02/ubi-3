@@ -36,7 +36,7 @@ async def get_mailing_text(message: Message, state: FSMContext):
             await sleep(1)
 
         try:
-            await bot.send_message(user.user_id, text=message.text)
+            await bot.send_message(user.login, text=message.text)
         except (BotBlocked, UserDeactivated, ChatNotFound):
             blocked += 1
 
