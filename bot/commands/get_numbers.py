@@ -3,7 +3,7 @@ from aiohttp import ClientSession
 
 from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
-from targs.updates import update_time
+from decorators.updates import update_time
 from objects.globals import dp, config
 
 @dp.message_handler(lambda message: message.text == "📲Купить виртуальный номер")

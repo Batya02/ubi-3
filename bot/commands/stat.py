@@ -4,7 +4,7 @@ from aiogram.types import Message
 from objects.globals import dp, config
 from db_models.UserAuth import UserAuth
 from db_models.UserData import UserData
-from targs.updates import update_time
+from decorators.updates import update_time
 
 @dp.message_handler(commands="stat")
 @dp.message_handler(lambda message: message.text=="📊Статистика")

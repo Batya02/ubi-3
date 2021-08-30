@@ -5,7 +5,7 @@ from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from objects.globals import dp
 from db_models.UserAuth import UserAuth
 from formats.dateTime import datetime_format
-from targs.updates import update_time
+from decorators.updates import update_time
 
 @dp.message_handler(lambda message:message.text == "👤Мой профиль")
 @update_time

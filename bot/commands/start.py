@@ -7,7 +7,7 @@ from objects.globals import dp
 from db_models.UserAuth import UserAuth
 from temp.lang_start import lang_start
 from temp.lang_keyboards import lang_keyboard
-from targs.updates import update_time
+from decorators.updates import update_time
 
 @dp.message_handler(commands="start")
 @update_time

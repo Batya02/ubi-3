@@ -5,7 +5,7 @@ from db_models.UserAuth import UserAuth
 from states.states import SendMessage
 from objects.globals import dp, bot, config 
 from temp.lang_keyboards import lang_keyboard
-from targs.updates import update_time 
+from decorators.updates import update_time 
 
 @dp.message_handler(lambda message: message.text == "✉️Отправить сообщение" or message.text == "✉️Send message")
 @update_time

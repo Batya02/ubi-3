@@ -5,7 +5,7 @@ from objects import globals
 from objects.globals import dp
 from targs.attack import Attack
 from states.states import Phone
-from targs.updates import update_time
+from decorators.updates import update_time
 from formats.phone import phone_format
 from db_models.UserAuth import UserAuth
 from db_models.UserData import UserData

@@ -2,7 +2,7 @@ from aiogram.types import Message
 
 from objects.globals import dp
 from db_models.UserAuth import UserAuth
-from targs.updates import update_time
+from decorators.updates import update_time
 
 @dp.message_handler(commands="help")
 @update_time
