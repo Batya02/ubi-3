@@ -12,5 +12,5 @@ async def help(message: Message):
     # Load help text (.txt)
     with open(r"temp/help_%s.txt" % main_user_data.language, "r", encoding="utf-8") as load_help_text:
         help_text = load_help_text.read()
-        
+
     return await message.answer(text=help_text)

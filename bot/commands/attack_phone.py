@@ -59,7 +59,7 @@ async def get_phone_targ(message: Message, state: FSMContext):
     # Create new attack object.
     # params: user phone and user id
     globals.client_session_object = Attack(phone=phone_format(message.text), user_id=message.from_user.id)
-    
+
     # set new object in variable
     globals.UserData = UserData
 

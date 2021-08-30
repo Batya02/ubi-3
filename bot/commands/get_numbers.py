@@ -22,7 +22,7 @@ async def get_numbers(message: Message):
         tg_price = int(data_services["telegram"]["Price"])  + 1 # Telegram price
         vk_price = int(data_services["vkontakte"]["Price"]) + 1 # Vkontakte price
         wa_price = int(data_services["whatsapp"]["Price"])  + 1 # Whats app price
-        
+
         prices_markup = InlineKeyboardMarkup(
             inline_keyboard=[
                 [InlineKeyboardButton(text=f"Telegram {tg_price}", callback_data=f"num_telegram_{tg_price}")],

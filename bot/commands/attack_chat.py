@@ -55,13 +55,13 @@ async def get_text_chat(message: Message, state: FSMContext):
 
     await state.update_data(text_chat=message.text)
     data = await state.get_data()
-    
+
     link = data["link"]
     text_chat = data["text_chat"]
 
     leave_from_chat_markup = InlineKeyboardMarkup(
         inline_keyboard=[[InlineKeyboardButton(text="Выйти из чата", callback_data="leave-from-chat")]])
-    
+
     global attack_tg_chat
     attack_tg_chat = Attack(link, text_chat) 
 

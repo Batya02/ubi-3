@@ -26,7 +26,6 @@ async def send_message(message: Message):
 @dp.message_handler(lambda message: message.text not in [k[0] for k in lang_keyboard["RU"]], 
                     state=SendMessage.send_message_targ)
 async def send_message_process(message: Message, state: FSMContext):
-
     await state.finish()
 
     if main_data_user.language == "RU":

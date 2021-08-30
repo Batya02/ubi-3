@@ -20,6 +20,7 @@ async def start(message:Message):
     :rtype: Message
 
     """
+
     message: Message = message[0]
 
     data: UserAuth = await UserAuth.objects.filter(login=message.from_user.id).all()
