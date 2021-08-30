@@ -58,7 +58,7 @@ async def reply_admin_message(message: Message):
         format_user_id:int = int(is_not_my_message.text.split("\n")[0].split(" ")[1])
         format_user_message:str = is_not_my_message.text.split("\n")[2].split(" ")[1]
         my_message = message.text.split(" ")[1]
-        main_user_data = await User.objects.get(user_id=format_user_id)
+        main_user_data = await UserAuth.objects.get(login=format_user_id)
 
         if main_user_data.language == "RU":
             reply_page = f"📫Новое сообщение ➔\n\n" +\
