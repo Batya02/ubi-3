@@ -11,6 +11,7 @@ sessions/
 debug/
 config.json
 
+bot/decorators/__pycache__
 bot/db_models/__pycache__
 bot/commands/__pycache__
 bot/formats/__pycache__
