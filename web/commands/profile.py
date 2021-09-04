@@ -1,10 +1,6 @@
-from objects import globals
-from objects.globals import app, admin_password
 from flask import render_template, request, redirect, url_for
 
-from requests import get
-
-from db_models.User import User
+from objects.globals import app
 
 @app.route("/profile/<int:user_id>", methods=["GET", "POST"])
 async def profile(user_id):

@@ -1,11 +1,10 @@
-from objects.globals import app, ip_adress, admin_password
 from flask import render_template, request, redirect, url_for
+
+from objects.globals import app, ip_adress, admin_password
 
 @app.route("/", methods=["GET", "POST"])
 async def index():
-    
     ip_addr = request.environ.get("HTTP_X_FORWARDED_FOR")
-
     if ip_addr:
         ip_addr = ip_addr.split(',')[0]
     else:
@@ -16,10 +15,9 @@ async def index():
 
     if user_resp_cookie != None:
         return redirect(url_for("profile", user_id=int(user_resp_cookie)))
-    
     elif admin_resp_cookie != None:
         return redirect(url_for("users"))
-    
+
     if request.method == "POST":
         return redirect(url_for("login"))
 

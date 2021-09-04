@@ -1,18 +1,15 @@
-from objects import globals
-from objects.globals import app, ip_adress, admin_password
 from flask import render_template, request, redirect, url_for
 
-from requests import get
-
+from objects import globals
+from objects.globals import app, admin_password
 from db_models.User import User
 from db_models.UserAuth import UserAuth
 
 @app.route("/users", methods=["GET", "POST"])
 async def users():
-
     if request.cookies.get("admin") != admin_password:
         return redirect(url_for("index"))
-    
+
     if bool(request.form.get("sort-users")):
         globals.users = list(reversed(globals.users))
     else:
@@ -32,8 +29,7 @@ async def users():
     return render_template(
         "users.html",      users=globals.users, 
         count_users=globals.count_users, 
-        web_data = UserAuth
-        )
+        web_data = UserAuth)
 
 @app.route("/more-info/<int:user_id>", methods=["GET", "POST"])
 async def more_info(user_id):
