@@ -129,10 +129,6 @@
                 "url": "https://%s/?module=users&action=SendSMSReg&phone=+%s",
                 "formating": true
         },
-        "bZ>AicXxL#Z+UNWZ*OgLE@N+PEpT#gXL4a}ZDn!": {
-                "url": "https://%s/api/pwa/generateotp?phone=+%s&country_code=%2B7&nod=4&locale=en",
-                "formating": true
-        },
         "bZ>Aib7f<7a%C=WZft38WiEALEpT#gXL4a}ZDn!": {
                 "url": "https://%s/ajax/check_phone/?reg_phone=%s",
                 "formating": true
