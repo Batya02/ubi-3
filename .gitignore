@@ -9,6 +9,7 @@ Scripts/
 db/
 sessions/
 debug/
+bot/sites/proxies.json
 config.json
 
 bot/decorators/__pycache__
