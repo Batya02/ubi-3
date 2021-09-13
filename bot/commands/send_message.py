@@ -1,5 +1,6 @@
 from aiogram.types import Message
 from aiogram.dispatcher.storage import FSMContext
+from aiogram.utils.exceptions import BotBlocked
 
 from db_models.UserAuth import UserAuth
 from states.states import SendMessage
@@ -60,16 +61,19 @@ async def reply_admin_message(message: Message):
         main_user_data = await UserAuth.objects.get(login=format_user_id)
 
         if main_user_data.language == "RU":
-            reply_page = f"📫Новое сообщение ➔\n\n" +\
-            f"📍[От]: Admin\n" +\
-            f"✔️[Ваше сообщение]: {format_user_message}\n" +\
-            f"✔️[Сообщение от админа]: {my_message}\n"
+            reply_page = (f"📫Новое сообщение ➔\n\n"
+            f"📍[От]: Admin\n"
+            f"✔️[Ваше сообщение]: {format_user_message}\n"
+            f"✔️[Сообщение от админа]: {my_message}\n")
         else:
-            reply_page = f"📫New message ➔\n\n" +\
-            f"📍[From]: Admin\n" +\
-            f"✔️[Your message]: {format_user_message}\n" +\
-            f"✔️[Admin message]: {my_message}\n"
-
-        await bot.send_message(chat_id = format_user_id, text=reply_page)
+            reply_page = (f"📫New message ➔\n\n"
+            f"📍[From]: Admin\n"
+            f"✔️[Your message]: {format_user_message}\n"
+            f"✔️[Admin message]: {my_message}\n")
+        
+        try:
+            await bot.send_message(chat_id = format_user_id, text=reply_page)
+        except BotBlocked:
+            return await message.answer(text="Пользователь заблокировал бота")
 
         return await message.answer(text="✔️Сообщение успешно отправлено пользователю")
