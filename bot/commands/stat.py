@@ -1,4 +1,3 @@
-import inspect
 from aiogram.types import Message
 
 from objects.globals import dp, config
