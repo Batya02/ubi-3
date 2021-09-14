@@ -11,6 +11,7 @@ from db_models.UserAuth import UserAuth
 from db_models.UserData import UserData
 from temp.lang_keyboards import lang_keyboard
 
+
 @dp.message_handler(lambda message: message.text == "💣Атаковать номер")
 @update_time
 async def attack_phone_RU(message: Message):
@@ -23,6 +24,7 @@ async def attack_phone_RU(message: Message):
 
     await message.answer(text=f"Отмена /start\n"f"Введите номер телефона(без +):")
     await Phone.get_phone_targ.set()
+
 
 @dp.message_handler(lambda message: message.text == "💣Attack number")
 @update_time
@@ -37,8 +39,9 @@ async def attack_phone_ENG(message: Message):
     await message.answer(text=f"Cancel /start\n"f"Input phone number(without +):")
     await Phone.get_phone_targ.set()
 
+
 @dp.message_handler(lambda message: message.text not in [k[0] for k in lang_keyboard["RU"]],
-        state=Phone.get_phone_targ)
+                    state=Phone.get_phone_targ)
 async def get_phone_targ(message: Message, state: FSMContext):
     await state.finish()
 
@@ -58,7 +61,8 @@ async def get_phone_targ(message: Message, state: FSMContext):
 
     # Create new attack object.
     # params: user phone and user id
-    globals.client_session_object = Attack(phone=phone_format(message.text), user_id=message.from_user.id)
+    globals.client_session_object = Attack(
+        phone=phone_format(message.text), user_id=message.from_user.id)
 
     # set new object in variable
     globals.UserData = UserData
@@ -72,8 +76,9 @@ async def get_phone_targ(message: Message, state: FSMContext):
         stop_text_button = "⏹Stop"
 
     stoped_attack = InlineKeyboardMarkup(
-        inline_keyboard = [
-            [InlineKeyboardButton(text=stop_text_button, callback_data="stoped_attack")]
+        inline_keyboard=[
+            [InlineKeyboardButton(text=stop_text_button,
+                                  callback_data="stoped_attack")]
         ])
 
     await message.answer(text=stop_text_message, reply_markup=stoped_attack)

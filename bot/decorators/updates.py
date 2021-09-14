@@ -4,6 +4,7 @@ from orm import NoMatch
 
 from db_models.UserAuth import UserAuth
 
+
 def update_time(main):
     async def wrapper_function(*args):
         try:

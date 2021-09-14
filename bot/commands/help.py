@@ -4,6 +4,7 @@ from objects.globals import dp
 from db_models.UserAuth import UserAuth
 from decorators.updates import update_time
 
+
 @dp.message_handler(commands="help")
 @update_time
 async def help(message: Message):

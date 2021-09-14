@@ -2,7 +2,6 @@ from flask import render_template, request, redirect, url_for
 
 from objects import globals
 from objects.globals import app, admin_password
-from db_models.User import User
 from db_models.UserAuth import UserAuth
 
 @app.route("/users", methods=["GET", "POST"])
@@ -13,7 +12,7 @@ async def users():
     if bool(request.form.get("sort-users")):
         globals.users = list(reversed(globals.users))
     else:
-        globals.users = await User.objects.all()
+        globals.users = await UserAuth.objects.all()
         globals.count_users = len(globals.users)
 
     if request.method == "POST":

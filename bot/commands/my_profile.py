@@ -7,7 +7,8 @@ from db_models.UserAuth import UserAuth
 from formats.dateTime import datetime_format
 from decorators.updates import update_time
 
-@dp.message_handler(lambda message:message.text == "👤Мой профиль")
+
+@dp.message_handler(lambda message: message.text == "👤Мой профиль")
 @update_time
 async def my_profile_ru(message: Message):
     """My profile (RU)
@@ -26,11 +27,15 @@ async def my_profile_ru(message: Message):
 
     buttons_markup = InlineKeyboardMarkup(
         inline_keyboard=[
-            [InlineKeyboardButton(text="Пополнить баланс", callback_data="top_up_balance")],
-            [InlineKeyboardButton(text="Изменить язык", callback_data="change_language")],
-            [InlineKeyboardButton(text="Информация о последней атаке", callback_data="info_about_the_last_attack")],
-            [InlineKeyboardButton(text="Вывести историю активаций", callback_data="get_history_activations")]
-            ])
+            [InlineKeyboardButton(text="Пополнить баланс",
+                                  callback_data="top_up_balance")],
+            [InlineKeyboardButton(text="Изменить язык",
+                                  callback_data="change_language")],
+            [InlineKeyboardButton(
+                text="Информация о последней атаке", callback_data="info_about_the_last_attack")],
+            [InlineKeyboardButton(
+                text="Вывести историю активаций", callback_data="get_history_activations")]
+        ])
 
     return await message.answer(
         text=f"➖\n"
@@ -50,7 +55,8 @@ async def my_profile_ru(message: Message):
         f"🗝Пароль: <code>{user_data.password}</code>",
         reply_markup=buttons_markup)
 
-@dp.message_handler(lambda message:message.text == "👤My profile")
+
+@dp.message_handler(lambda message: message.text == "👤My profile")
 async def my_profile_eng(message: Message):
     """My profile (ENG)
 
@@ -67,11 +73,15 @@ async def my_profile_eng(message: Message):
 
     buttons_markup = InlineKeyboardMarkup(
         inline_keyboard=[
-            [InlineKeyboardButton(text="Top up balance", callback_data="top_up_balance")],
-            [InlineKeyboardButton(text="Change language", callback_data="change_language")],
-            [InlineKeyboardButton(text="Information about the last attack", callback_data="info_about_the_last_attack")],
-            [InlineKeyboardButton(text="Get activation history", callback_data="get_history_activations")]
-            ])
+            [InlineKeyboardButton(text="Top up balance",
+                                  callback_data="top_up_balance")],
+            [InlineKeyboardButton(text="Change language",
+                                  callback_data="change_language")],
+            [InlineKeyboardButton(text="Information about the last attack",
+                                  callback_data="info_about_the_last_attack")],
+            [InlineKeyboardButton(
+                text="Get activation history", callback_data="get_history_activations")]
+        ])
 
     return await message.answer(
         text=f"➖\n"

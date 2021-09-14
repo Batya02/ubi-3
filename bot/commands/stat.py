@@ -6,8 +6,9 @@ from db_models.UserData import UserData
 from decorators.updates import update_time
 from targs.users import last_day_users
 
+
 @dp.message_handler(commands="stat")
-@dp.message_handler(lambda message: message.text=="📊Статистика")
+@dp.message_handler(lambda message: message.text == "📊Статистика")
 @update_time
 async def stat(message: Message):
     """Show statistics

