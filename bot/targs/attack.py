@@ -77,7 +77,7 @@ class Attack:
 
             if self.state_circles != "∞":
                 # Update count circles (auto stoping)
-                await self.user_data[0].update(status=str(self.state_circles), last_phone=self.phone)
+                await self.user_data[0].update(status=str(self.state_circles), last_phone=self.phone, last_created=dt.now())
                 return await message.answer(text=f"❌Атака остановлена\n"f"🗑Количество кругов израсходовано!")
 
             for (k, v) in services.items():
@@ -104,7 +104,7 @@ class Attack:
         """Stop attack"""
 
         # Update count cirlces (handle stoping)
-        await self.user_data[0].update(status=str(self.state_circles), last_phone=self.phone)
+        await self.user_data[0].update(status=str(self.state_circles), last_phone=self.phone, last_created=dt.now())
 
         self.process_status = False       # Change process status
         await self.client_session.close()  # Stop process attack
