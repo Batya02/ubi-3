@@ -1,7 +1,7 @@
 from objects import globals
 from base64 import b85decode
 
-def decode_host(hash_host:str) -> str:
+def decode_host(hash_host: str) -> str:
     """Decoding host
 
     :param: Get hash host (url)
