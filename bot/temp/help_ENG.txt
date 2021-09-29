@@ -5,4 +5,4 @@ Main commands:
 
 You can attack a number using the button(💣Attack number) which is located below👇
 
-The more often a number is attacked, the more likely it is that the number will end up in the block list of services!
+The more often a number is attacked, the more likely it is that the number will end up in the block-list of services!
