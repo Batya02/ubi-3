@@ -1,6 +1,6 @@
 import re 
 
-def phone_format(phone:str) -> str:
+def phone_format(phone: str) -> str:
     """ Formating phone
     :param: Get user phone
     :type: str
