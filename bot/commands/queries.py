@@ -1,3 +1,4 @@
+import threading
 from typing import Any
 import pandas as pd
 from io import BytesIO
@@ -80,6 +81,8 @@ async def stoped_attack(query: CallbackQuery):
     """
 
     await globals.client_session_object.stop()
+    #thread = threading.Thread(target=globals.client_session_object.stop, args=())
+    #await thread.start()
     main_user_data: UserAuth = await UserAuth.objects.get(login=query.from_user.id)
 
     if main_user_data == "RU":
