@@ -17,5 +17,5 @@ db_engine = None
 is_mailing:bool = False
 
 # Other
-client_session_object:Attack = None
+client_session_object = None
 UserData = None
