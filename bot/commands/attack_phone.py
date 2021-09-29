@@ -1,3 +1,5 @@
+import threading
+
 from aiogram.dispatcher.storage import FSMContext
 from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
