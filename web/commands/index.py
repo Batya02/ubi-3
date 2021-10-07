@@ -13,11 +13,13 @@ async def index():
     user_resp_cookie = request.cookies.get("login")
     admin_resp_cookie = request.cookies.get("admin")
 
+    """
     if user_resp_cookie != None:
         return redirect(url_for("profile", user_id=int(user_resp_cookie)))
     elif admin_resp_cookie != None:
         return redirect(url_for("users"))
-
+    """
+    print(user_resp_cookie)
     if request.method == "POST":
         return redirect(url_for("login"))
 
