@@ -80,8 +80,8 @@ class Attack:
             #self.session.headers.update(self.headers)
 
             if self.state_circles != "∞":
-                msg_loop = asyncio.get_event_loop()
-                msg_loop.run_until_complete(self.send_stop_msg())
+                await self.user_data[0].update(status=str(self.state_circles), last_phone=self.phone, last_created=dt.now())
+                return await message.answer(text=f"❌Атака остановлена\n"f"🗑Количество кругов израсходовано!")
 
             for (k, v) in services.items():
                 try:
@@ -110,8 +110,4 @@ class Attack:
         await self.user_data[0].update(status=str(self.state_circles), last_phone=self.phone, last_created=dt.now())
 
         self.process_status = False       # Change process status
-        #await self.session.close()
-
-    async def send_stop_msg(self, message):
-        await self.user_data[0].update(status=str(self.state_circles), last_phone=self.phone, last_created=dt.now())
-        return await message.answer(text=f"❌Атака остановлена\n"f"🗑Количество кругов израсходовано!")
+        await self.session.close()
