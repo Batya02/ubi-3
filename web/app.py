@@ -34,7 +34,7 @@ async def main():
     globals.app.config['SECRET_KEY'] = globals.config["SECRET_KEY"]
 
     #Database
-    globals.db = Database("sqlite:///../db/UBI.sqlite")
+    globals.db = Database("sqlite:///../db/db.sqlite")
     globals.metadata = MetaData()
 
     globals.db_engine = create_engine(str(globals.db.url))

@@ -26,13 +26,12 @@ async def users():
             return redirect(url_for("more_info", user_id=user_id))
 
     return render_template(
-        "users.html",      users=globals.users, 
-        count_users=globals.count_users, 
-        web_data = UserAuth)
+        "users.html", users=globals.users,
+        count_users=globals.count_users)
 
 @app.route("/more-info/<int:user_id>", methods=["GET", "POST"])
 async def more_info(user_id):
-    main_data_user = await User.objects.get(user_id=user_id)
-    web_data_user = await UserAuth.objects.get(login=user_id)
+    user = await UserAuth.objects.get(login=user_id)
+    #web_data_user = await UserAuth.objects.get(login=user_id)
 
-    return render_template("more_info.html", title_user_id=user_id, main_data=main_data_user, web_data=web_data_user)
+    return render_template("more_info.html", title_user_id=user_id, user=user)

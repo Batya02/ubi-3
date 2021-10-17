@@ -17,22 +17,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for _ in users %}
+                        {% for user in users %}
                         <tr>
-                            <th scope="row">{{ _.id }}</th>
+                            <th scope="row">{{ user.id }}</th>
                             <th>
                                 <div class="btn-group dropright">
                                 <form method="post">
-                                    <button type=submit" class="btn btn-secondary dropdown-toggle btn-sm" name="more-info" value="{{ _.user_id }}">{{ _.user_id }}</button>
+                                    <button type=submit" class="btn btn-secondary dropdown-toggle btn-sm" name="more-info" value="{{ user.login }}">{{ user.login }}</button>
                                 </form>
                                 </div>
                             </th>
-                            {% if _.username == "None" %}
-                                <td>Отсутсвует</td>
+                            {% if user.username %}
+                                <td><a href="https://t.me/{{ user.username }}">{{ user.username }}</a></td>
                             {% else %}
-                                <td><a href="https://t.me/{{ _.username }}">{{ _.username }}</a></td>
+                                <td>Отсутсвует</td>
                             {% endif %}
-                            <td>{{ _.language }}</td>
+                            {% if user.language != "None" %}
+                                <td>{{ user.language }}</td>
+                            {% else %}
+                                <td>Не выбран</td>
+                            {% endif %}
                         </tr>
                         {% endfor %}
                     </tbody>

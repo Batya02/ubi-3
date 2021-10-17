@@ -9,39 +9,39 @@
     <body>
         <br>
         <div class="jumbotron">
-            <h1 class="display-5"><b><u>{{ web_data.login }}</u></b></h1>
+            <h1 class="display-5"><b><u>{{ user.login }}</u></b></h1>
             <hr class="my-4">
             <div class="alert alert-dark" role="alert">
-                <h5><b>ID: </b><span class="badge badge-info">{{ web_data.id }}</span></h5>
+                <h5><b>ID: </b><span class="badge badge-info">{{ user.id }}</span></h5>
             </div>
 
             <div class="alert alert-dark" role="alert">
-                <h5><b>Баланс: </b><span class="badge badge-info">{{ main_data.balance }} ₽</span></h5>
+                <h5><b>Баланс: </b><span class="badge badge-info">{{ user.balance }} ₽</span></h5>
             </div>
 
             <div class="alert alert-dark" role="alert">
-                {% if web_data.last_name != None %}
-                    <h5><b>Фамилия: </b><span class="badge badge-info">{{ web_data.last_name }}</span></h5>
+                {% if user.last_name != None %}
+                    <h5><b>Фамилия: </b><span class="badge badge-info">{{ user.last_name }}</span></h5>
                 {% else %}
                     <h5><b>Фамилия: </b><span class="badge badge-secondary">Не установлено</span></h5>
                 {% endif %}
             </div>
 
             <div class="alert alert-dark" role="alert">
-                {% if web_data.first_name != None %}
-                    <h5><b>Имя: </b><span class="badge badge-info">{{ web_data.first_name }}</span></h5>
+                {% if user.first_name != None %}
+                    <h5><b>Имя: </b><span class="badge badge-info">{{ user.first_name }}</span></h5>
                 {% else %}
                     <h5><b>Имя: </b><span class="badge badge-secondary">Не установлено</span></h5>
                 {% endif %}
             </div>
 
             <div class="alert alert-dark" role="alert">
-                <h5><b>Дата регистрации: </b><span class="badge badge-info">{{ (main_data.created | string)[:-7] }}</span></h5>
+                <h5><b>Дата регистрации: </b><span class="badge badge-info">{{ (user.date_joined | string)[:-7] }}</span></h5>
             </div>
 
             <div class="alert alert-dark" role="alert">
-                {% if web_data.ip_address != None %}
-                    <h5><b>IP Address: </b><span class="badge badge-success">{{ web_data.ip_address }}</span></h5>
+                {% if user.ip_address != None %}
+                    <h5><b>IP Address: </b><span class="badge badge-success">{{ user.ip_address }}</span></h5>
                 {% else %}
                     <h5><b>IP Address: </b><span class="badge badge-secondary">Отсутствует</span></h5>
                 {% endif %}

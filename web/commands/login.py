@@ -27,6 +27,7 @@ async def login():
                 check_admin = await AdminAuth.objects.get(login=login)
                 if len(check_admin) > 0:
                     hash_pass = md5(password.encode("utf-8")).hexdigest()
+
                     if admin_password == hash_pass:
                         resp = redirect(url_for("users"))
                         resp.set_cookie('admin', hash_pass)
