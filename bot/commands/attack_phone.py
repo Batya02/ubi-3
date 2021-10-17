@@ -1,5 +1,4 @@
-import threading
-
+from loguru import logger
 from aiogram.dispatcher.storage import FSMContext
 from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
@@ -84,4 +83,7 @@ async def get_phone_targ(message: Message, state: FSMContext):
         ])
 
     await message.answer(text=stop_text_message, reply_markup=stoped_attack)
-    await globals.client_session_object.start(message)
+    try:
+        await globals.client_session_object.start(message)
+    except Exception as e:
+        logger.error(e)
