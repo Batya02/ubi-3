@@ -1,20 +1,18 @@
-import asyncio
-import threading
+import socket
 from asyncio import sleep
 from random import choice
-from asyncio import get_event_loop
 from loguru import logger
 from json import loads
 from datetime import datetime as dt
 
-#from requests import Session
+import socks
 from aiohttp import ClientSession
 from requests.exceptions import ConnectionError, ReadTimeout, SSLError
 from aiogram.types import Message
 
 from objects import globals
 from temp.headers import headers
-from formats.decode_host import decode_host
+#from formats.decode_host import decode_host
 
 
 @logger.catch
@@ -67,8 +65,14 @@ class Attack:
         with open(r"sites/services.json") as services_load:
             services = loads(services_load.read())
 
+        with open(r"sites/proxies.json", "r") as load_proxies:
+            proxies = loads(load_proxies.read())
+
         # Run attack process
         while self.process_status:
+            proxy = choice(proxies)
+            ip, port, username, password = proxy.split(":")
+            await self.proxy_auth(ip, port, username, password)
             for (k, v) in services.items():
                 try:
                     if "data" in v.keys():
@@ -102,3 +106,10 @@ class Attack:
 
         self.process_status = False       # Change process status
         await self.session.close()
+
+    async def proxy_auth(self, ip, port, username, password):
+        try:
+            socks.set_default_proxy(socks.HTTP, ip, int(port), True, username, password)
+            socket.socket = socks.socksocket
+        except Exception as e:
+            logger.error(str(e))
