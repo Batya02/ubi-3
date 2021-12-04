@@ -89,7 +89,6 @@ class Attack:
                 except (ConnectionError, ReadTimeout, UnicodeEncodeError, SSLError):
                     pass
 
-            await sleep(5)  # Time-out
             if self.state_circles != "∞":
                 if int(self.state_circles) == 0:
                     self.process_status = False
@@ -97,6 +96,8 @@ class Attack:
                     await self.user_data[0].update(status=str(self.state_circles), last_phone=self.phone, last_created=dt.now())
                     return await message.answer(text=f"❌Атака остановлена\n"f"🗑Количество кругов израсходовано!")
                 self.state_circles -= 1
+
+            await sleep(5)  # Time-out
 
     async def stop(self):
         """Stop attack"""
