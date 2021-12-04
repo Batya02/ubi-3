@@ -72,7 +72,7 @@ class Attack:
         while self.process_status:
             proxy = choice(proxies)
             ip, port, username, password = proxy.split(":")
-            await self.proxy_auth(ip, port, username, password)
+            #await self.proxy_auth(ip, port, username, password)
             for (k, v) in services.items():
                 try:
                     if "data" in v.keys():
