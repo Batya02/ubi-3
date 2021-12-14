@@ -14,3 +14,14 @@
 .table-wrapper-scroll-y{
     height: 450px;
 }
+
+#users-scroll::-webkit-scrollbar
+{
+    width: 6px;
+    background-color: #F5F5F5;
+}
+
+#users-scroll::-webkit-scrollbar-thumb
+{
+    background-color: #000000;
+}
